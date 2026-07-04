@@ -106,31 +106,25 @@
   </div>
 </div>
 
-<!-- портфолио: реальный проект -->
+<!-- портфолио: карточки проектов -->
 <section id="portfolio">
   <div class="sec-head">
     <span class="label" data-i18n="folio_label">Портфолио</span>
     <h2 class="sec-title" data-i18n="folio_title">Каждая пара — своя история</h2>
   </div>
-  <a href="https://yoodea.github.io/dauren-aliya/" target="_blank" rel="noopener" class="feature-img rv-img" style="display:block">
-    <div class="par"><div class="zoom"><img src="uploads/da-hero.webp" alt="Dauren и Aliya — свадебное приглашение"></div></div>
-    <div class="flare"></div>
-  </a>
-  <div class="feature-meta">
-    <span class="name">Dauren &amp; Aliya <span class="label" style="margin-left:14px" data-i18n="folio_tag">приглашение · 2026</span></span>
-    <a href="https://yoodea.github.io/dauren-aliya/" target="_blank" rel="noopener" class="roll" data-i18n="see_project">Смотреть сайт</a>
-  </div>
-  <div class="mosaic" style="margin-top:clamp(40px,7vh,90px)">
-    <a href="https://yoodea.github.io/dauren-aliya/" target="_blank" rel="noopener" class="mosaic-item m-c">
-      <div class="feature-img rv-img" style="height:100%">
-        <div class="par"><div class="zoom"><img src="uploads/da-walk.webp" alt="Dauren и Aliya — прогулка по отелю"></div></div>
-        <div class="flare"></div>
+  <div class="work-grid">
+    <a class="work-card rv" href="https://yoodea.github.io/dauren-aliya/" target="_blank" rel="noopener">
+      <div class="wc-browser">
+        <div class="wc-bar" aria-hidden="true">
+          <span class="wc-dot"></span><span class="wc-dot"></span><span class="wc-dot"></span>
+          <span class="wc-url">yoodea.github.io/dauren-aliya</span>
+        </div>
+        <div class="wc-shot"><img src="uploads/da-site.webp" alt="Сайт-приглашение Dauren & Aliya" loading="lazy"></div>
       </div>
-    </a>
-    <a href="https://yoodea.github.io/dauren-aliya/" target="_blank" rel="noopener" class="mosaic-item m-d">
-      <div class="feature-img rv-img" style="height:100%">
-        <div class="par"><div class="zoom"><img src="uploads/da-elevator.webp" alt="Dauren и Aliya — поцелуй в лифте"></div></div>
-        <div class="flare"></div>
+      <div class="wc-meta">
+        <span class="wc-name">Dauren &amp; Aliya</span>
+        <span class="label" data-i18n="folio_tag">приглашение · 2026</span>
+        <span class="wc-arrow">→</span>
       </div>
     </a>
   </div>
@@ -177,8 +171,8 @@
       <p class="rv" data-i18n="about_p1">Shaqyru — студия из Алматы. Мы верим, что приглашение — первое впечатление о вашем празднике, и делаем его безупречным: дизайн, типографика, музыка и деталь за деталью.</p>
       <div class="stats rv" data-d="100">
         <div class="stat">
-          <div class="v"><span data-count="120">0</span>+</div>
-          <div class="l" data-i18n="st1">свадебных сайтов</div>
+          <div class="v">2026</div>
+          <div class="l" data-i18n="st1">год основания</div>
         </div>
         <div class="stat">
           <div class="v"><span data-count="3">0</span></div>
@@ -197,27 +191,7 @@
   </div>
 </section>
 
-<!-- отзывы -->
-<section>
-  <div class="sec-head">
-    <span class="label" data-i18n="rev_label">Отзывы</span>
-    <h2 class="sec-title" data-i18n="rev_title">Слова наших пар</h2>
-  </div>
-  <div class="reviews-grid">
-    <figure class="review rv">
-      <blockquote>«Гости открывали сайт и сразу звонили родителям — настолько красиво. RSVP собрали за два дня.»</blockquote>
-      <figcaption>Аружан &amp; Алихан — Алматы</figcaption>
-    </figure>
-    <figure class="review rv" data-d="120">
-      <blockquote>«Сделали за неделю, на казахском и английском. Бабушке читали вслух раздел про нашу историю.»</blockquote>
-      <figcaption>Дана &amp; Ерлан — Астана</figcaption>
-    </figure>
-    <figure class="review rv" data-d="240">
-      <blockquote>«QR на банкете — отдельный восторг. Пожелания гостей теперь храним как альбом.»</blockquote>
-      <figcaption>Камила &amp; Тимур — Шымкент</figcaption>
-    </figure>
-  </div>
-</section>
+
 
 <!-- контакт -->
 <section id="contact" class="contact">
@@ -292,7 +266,7 @@ window.SHQ_I18N = {
     s4t: 'Іске қосу', s4d: 'Сілтеме мен QR дайын — қонақтарға жіберіңіз.',
     about_label: 'Студия туралы', about_title: 'Той шақырудан басталады',
     about_p1: 'Shaqyru — Алматыдағы студия. Шақыру — тойыңыз туралы алғашқы әсер деп сенеміз, сондықтан оны мінсіз жасаймыз: дизайн, типографика, музыка және әр детальді ойластырамыз.',
-    st1: 'үйлену тойы сайты', st2: 'тіл әр сайтта', st3: 'алғашқы тұжырымдамаға дейін',
+    st1: 'құрылған жыл', st2: 'тіл әр сайтта', st3: 'алғашқы тұжырымдамаға дейін',
     rev_label: 'Пікірлер', rev_title: 'Жұптарымыздың сөзі',
     contact_label: 'Байланыс', contact_title: 'Тойыңыз туралы айтыңыз',
     f_note: 'Бір күн ішінде жауап береміз',
@@ -322,7 +296,7 @@ window.SHQ_I18N = {
     s4t: 'Launch', s4d: 'Link and QR ready — send it to your guests.',
     about_label: 'About', about_title: 'A wedding begins with the invitation',
     about_p1: 'Shaqyru is a studio from Almaty. We believe the invitation is the first impression of your celebration — so we make it flawless: design, typography, music, detail by detail.',
-    st1: 'wedding websites', st2: 'languages per site', st3: 'to the first concept',
+    st1: 'founded', st2: 'languages per site', st3: 'to the first concept',
     rev_label: 'Kind words', rev_title: 'From our couples',
     contact_label: 'Contact', contact_title: 'Tell us about your wedding',
     f_note: 'We reply within a day',
