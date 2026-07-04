@@ -14,7 +14,7 @@
   }
 
   function scrollToTarget(target) {
-    if (lenis) lenis.scrollTo(target, { offset: 0, duration: 1.4 });
+    if (lenis) lenis.scrollTo(target, { offset: 0, duration: 1.4, force: true });
     else if (typeof target === 'string') {
       var el = document.querySelector(target);
       if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -283,6 +283,65 @@
     var HOT = 'a, button, input, label, .folio-row';
     document.addEventListener('mouseover', function (e) {
       cur.classList.toggle('is-link', !!e.target.closest(HOT));
+    });
+
+    /* ---------- магнитные кнопки ---------- */
+    document.querySelectorAll('.pill').forEach(function (el) {
+      var mag = 0.28;
+      var xTo = gsap.quickTo(el, 'x', { duration: 0.4, ease: 'power3' });
+      var yTo = gsap.quickTo(el, 'y', { duration: 0.4, ease: 'power3' });
+      el.addEventListener('mousemove', function (e) {
+        var r = el.getBoundingClientRect();
+        xTo((e.clientX - (r.left + r.width / 2)) * mag);
+        yTo((e.clientY - (r.top + r.height / 2)) * mag);
+      });
+      el.addEventListener('mouseleave', function () { xTo(0); yTo(0); });
+    });
+  }
+
+  /* ---------- мобильное меню ---------- */
+  var burger = document.querySelector('.burger');
+  var mmenu = document.getElementById('mmenu');
+  if (burger && mmenu) {
+    var mOpen = false;
+    var mtl = gsap.timeline({
+      paused: true,
+      onStart: function () { mmenu.style.visibility = 'visible'; mmenu.setAttribute('aria-hidden', 'false'); },
+      onReverseComplete: function () { mmenu.style.visibility = 'hidden'; mmenu.setAttribute('aria-hidden', 'true'); }
+    });
+    mtl.to(mmenu, { clipPath: 'inset(0 0 0% 0)', duration: 0.6, ease: 'power4.inOut' })
+       .from('.mmenu-links a', { yPercent: 70, opacity: 0, duration: 0.6, ease: 'power3.out', stagger: 0.06 }, '-=0.25');
+    function setMenu(open) {
+      mOpen = open;
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', String(open));
+      if (open) { mtl.timeScale(1).play(); if (lenis) lenis.stop(); }
+      else { mtl.timeScale(1.4).reverse(); if (lenis) lenis.start(); }
+    }
+    burger.addEventListener('click', function () { setMenu(!mOpen); });
+    mmenu.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { setMenu(false); });
+    });
+  }
+
+  /* ---------- шторка перехода между страницами ---------- */
+  var veil = document.getElementById('veil');
+  if (veil) {
+    if (sessionStorage.getItem('shq-veil')) {
+      sessionStorage.removeItem('shq-veil');
+      gsap.fromTo(veil, { scaleY: 1, transformOrigin: 'top' },
+        { scaleY: 0, duration: 0.7, ease: 'power4.inOut', delay: 0.1 });
+    }
+    document.querySelectorAll('a[href$=".html"], a[href*=".html#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        var href = a.getAttribute('href');
+        sessionStorage.setItem('shq-veil', '1');
+        gsap.fromTo(veil, { scaleY: 0, transformOrigin: 'bottom' }, {
+          scaleY: 1, duration: 0.5, ease: 'power4.inOut',
+          onComplete: function () { location.href = href; }
+        });
+      });
     });
   }
 

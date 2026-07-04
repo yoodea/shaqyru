@@ -6,6 +6,15 @@
 <script>document.documentElement.classList.add('js')</script>
 <title>shaqyru — студия свадебных сайтов</title>
 <meta name="description" content="Персональные свадебные сайты: история пары, RSVP и вся информация для гостей в одной красивой ссылке. Алматы · Астана · online.">
+<meta property="og:title" content="shaqyru — студия свадебных сайтов">
+<meta property="og:description" content="Персональный сайт вашей свадьбы — история пары, RSVP и вся информация для гостей в одной красивой ссылке.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yoodea.github.io/shaqyru/">
+<meta property="og:image" content="https://yoodea.github.io/shaqyru/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://yoodea.github.io/shaqyru/og.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
@@ -41,8 +50,24 @@
       <button data-lang="en">EN</button>
     </div>
     <a href="#contact" class="pill ghost"><span class="lbl" data-i18n="nav_cta">Проверить дату</span></a>
+    <button class="burger" aria-label="Меню" aria-expanded="false"><span></span><span></span></button>
   </div>
 </header>
+
+<!-- мобильное меню -->
+<div id="mmenu" aria-hidden="true">
+  <nav class="mmenu-links">
+    <a data-i18n="nav_folio" href="#portfolio">Портфолио</a>
+    <a data-i18n="nav_price" href="#pricing">Тарифы</a>
+    <a data-i18n="nav_process" href="#process">Процесс</a>
+    <a data-i18n="nav_about" href="#about">О студии</a>
+    <a data-i18n="nav_contact" href="#contact">Контакт</a>
+  </nav>
+  <div class="mmenu-foot label" data-i18n="footer_tag">студия свадебных сайтов · Алматы</div>
+</div>
+
+<!-- шторка перехода между страницами -->
+<div id="veil"></div>
 
 <!-- hero -->
 <section class="hero" id="top">
