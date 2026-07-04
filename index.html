@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>shaqyru — студия свадебных сайтов</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#f5f0e6}
+  ::selection{background:#9c7b45;color:#f5f0e6}
+  image-slot{display:block;width:100%;height:100%}
+  @property --n{syntax:"<integer>";inherits:false;initial-value:0}
+  @keyframes ldr{to{--n:100}}
+  @keyframes ldrbar{to{transform:scaleX(1)}}
+  @keyframes veil{to{transform:translateY(-101%);visibility:hidden}}
+  @keyframes rise{to{transform:translateY(0)}}
+  @keyframes fadein{to{opacity:1}}
+  @keyframes marq{to{transform:translateX(-50%)}}
+  @keyframes herozoom{from{transform:scale(1.14)}to{transform:scale(1)}}
+</style>
+</helmet>
+
+<div style="background:#f5f0e6; color:#211d16; font-family:'Manrope',sans-serif; font-size:16px; line-height:1.6; overflow-x:hidden">
+
+  <!-- ПРЕЛОАДЕР -->
+  <div id="preloader" style="position:fixed; inset:0; z-index:100; background:#1c1913; color:#f0e9db; display:flex; align-items:flex-end; justify-content:space-between; padding:48px clamp(24px,5vw,72px); animation:veil .9s cubic-bezier(.76,0,.24,1) 2.35s forwards">
+    <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(28px,3vw,44px)">shaqyru</div>
+    <div style="display:flex; align-items:baseline; gap:4px">
+      <span style="font-family:'Cormorant Garamond',serif; font-size:clamp(64px,8vw,120px); line-height:1; counter-reset:ldrn calc(var(--n)); animation:ldr 2s cubic-bezier(.35,.6,.35,1) .1s forwards" style-after="content: counter(ldrn)"></span>
+      <span style="font-size:14px; color:#6f6857">%</span>
+    </div>
+    <div style="position:absolute; left:0; bottom:0; height:2px; width:100%; background:#9c7b45; transform:scaleX(0); transform-origin:left; animation:ldrbar 2.1s cubic-bezier(.35,.6,.35,1) .1s forwards"></div>
+  </div>
+
+  <!-- НАВИГАЦИЯ -->
+  <nav style="position:fixed; top:0; left:0; right:0; z-index:60; display:flex; align-items:center; justify-content:space-between; padding:16px clamp(24px,5vw,72px); background:rgba(245,240,230,.92); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border-bottom:1px solid rgba(33,29,22,.08); color:#211d16; opacity:0; animation:fadein .9s ease 2.6s forwards">
+    <a href="#top" style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:26px; color:#211d16; text-decoration:none">shaqyru<sup style="font-size:11px; font-style:normal">®</sup></a>
+    <div style="display:flex; gap:34px; font-size:12px; letter-spacing:.18em; text-transform:uppercase">
+      <a data-i18n="nav_folio" href="#portfolio" style="color:#211d16; text-decoration:none; opacity:.75" style-hover="opacity:1">Портфолио</a>
+      <a data-i18n="nav_price" href="#pricing" style="color:#211d16; text-decoration:none; opacity:.75" style-hover="opacity:1">Тарифы</a>
+      <a data-i18n="nav_process" href="#process" style="color:#211d16; text-decoration:none; opacity:.75" style-hover="opacity:1">Процесс</a>
+      <a data-i18n="nav_about" href="#about" style="color:#211d16; text-decoration:none; opacity:.75" style-hover="opacity:1">О студии</a>
+      <a data-i18n="nav_contact" href="#contact" style="color:#211d16; text-decoration:none; opacity:.75" style-hover="opacity:1">Контакт</a>
+    </div>
+    <div style="display:flex; align-items:center; gap:22px">
+      <div style="display:flex; gap:12px; font-size:12px; letter-spacing:.14em; text-transform:uppercase">
+        <button data-lang-btn="ru" onClick="{{ toRu }}" style="background:none; border:none; color:#211d16; cursor:pointer; padding:0; font:inherit; letter-spacing:inherit; text-transform:inherit">RU</button>
+        <button data-lang-btn="kk" onClick="{{ toKk }}" style="background:none; border:none; color:#211d16; cursor:pointer; padding:0; font:inherit; letter-spacing:inherit; text-transform:inherit; opacity:.45">QAZ</button>
+        <button data-lang-btn="en" onClick="{{ toEn }}" style="background:none; border:none; color:#211d16; cursor:pointer; padding:0; font:inherit; letter-spacing:inherit; text-transform:inherit; opacity:.45">EN</button>
+      </div>
+      <a data-i18n="nav_cta" href="#contact" style="color:#211d16; text-decoration:none; font-size:12px; letter-spacing:.18em; text-transform:uppercase; border:1px solid rgba(33,29,22,.45); border-radius:999px; padding:10px 20px" style-hover="background:#211d16; color:#f5f0e6">Оставить заявку</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="top" data-screen-label="Hero" style="position:relative; height:100vh; min-height:640px; overflow:hidden; background:#1c1913">
+    <div id="heroPar" style="position:absolute; left:0; right:0; top:-14%; bottom:-14%; will-change:transform">
+      <div style="width:100%; height:100%; animation:herozoom 3.2s cubic-bezier(.22,1,.36,1) 2.2s backwards">
+        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="hero-couple" src="uploads/Image from Kosaev (21).jpg" shape="rect" radius="0" placeholder="полноэкранное фото пары — кинематографичный кадр" style="width:100%; height:100%" hint-size="100%,100%"></x-import>
+      </div>
+    </div>
+    <div style="position:absolute; inset:0; pointer-events:none; background:linear-gradient(180deg, rgba(28,25,19,.25) 0%, rgba(28,25,19,.18) 40%, rgba(28,25,19,.92) 100%)"></div>
+    <div style="position:absolute; left:0; right:0; bottom:0; padding:0 clamp(24px,5vw,72px) 64px; pointer-events:none; color:#f0e9db">
+      <div data-i18n="hero_kicker" style="font-size:12px; letter-spacing:.28em; text-transform:uppercase; color:#cbb489; margin-bottom:22px">Студия свадебных сайтов · Алматы</div>
+      <h1 style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:400; font-size:clamp(52px,8.2vw,142px); line-height:.98; letter-spacing:-.01em">
+        <div style="overflow:hidden"><span data-i18n="hero_l1" style="display:inline-block; transform:translateY(112%); animation:rise 1s cubic-bezier(.22,1,.36,1) 2.5s forwards">Свадебные сайты,</span></div>
+        <div style="overflow:hidden"><span data-i18n="hero_l2" style="display:inline-block; font-style:italic; color:#ddd2bc; transform:translateY(112%); animation:rise 1s cubic-bezier(.22,1,.36,1) 2.62s forwards">которые не забывают</span></div>
+      </h1>
+      <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:40px; margin-top:34px; flex-wrap:wrap">
+        <p data-i18n="hero_sub" style="margin:0; max-width:440px; color:#d4cab6; font-size:16px">Персональный сайт вашей свадьбы — история пары, RSVP и вся информация для гостей в одной красивой ссылке.</p>
+        <div style="opacity:0; animation:fadein .9s ease 3s forwards; pointer-events:auto; display:flex; align-items:center; gap:26px">
+          <span data-i18n="hero_scroll" style="font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:#a5997f">листайте</span>
+          <a data-i18n="hero_cta" href="#contact" style="color:#1c1913; background:#f0e9db; text-decoration:none; font-size:12px; letter-spacing:.18em; text-transform:uppercase; border-radius:999px; padding:16px 32px; border:1px solid #f0e9db" style-hover="background:transparent; color:#f0e9db">Проверить дату</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- БЕГУЩАЯ СТРОКА -->
+  <div style="border-bottom:1px solid rgba(33,29,22,.16); overflow:hidden; padding:20px 0; background:#f5f0e6">
+    <div style="display:flex; width:max-content; animation:marq 30s linear infinite">
+      <div style="display:flex; align-items:baseline; gap:28px; padding-right:28px; white-space:nowrap">
+        <span style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:26px">shaqyru</span><span style="color:#9c7b45">·</span>
+        <span style="font-size:13px; letter-spacing:.24em; text-transform:uppercase; color:#6f6857">студия свадебных сайтов</span><span style="color:#9c7b45">·</span>
+        <span style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:26px">save the date</span><span style="color:#9c7b45">·</span>
+        <span style="font-size:13px; letter-spacing:.24em; text-transform:uppercase; color:#6f6857">ваша история любви</span><span style="color:#9c7b45">·</span>
+        <span style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:26px">shaqyru</span><span style="color:#9c7b45">·</span>
+        <span style="font-size:13px; letter-spacing:.24em; text-transform:uppercase; color:#6f6857">студия свадебных сайтов</span><span style="color:#9c7b45">·</span>
+        <span style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:26px">save the date</span><span style="color:#9c7b45">·</span>
+        <span style="font-size:13px; letter-spacing:.24em; text-transform:uppercase; color:#6f6857">ваша история любви</span><span style="color:#9c7b45">·</span>
+      </div>
+      <div style="display:flex; align-items:baseline; gap:28px; padding-right:28px; white-space:nowrap">
+        <span style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:26px">shaqyru</span><span style="color:#9c7b45">·</span>
+        <span style="font-size:13px; letter-spacing:.24em; text-transform:uppercase; color:#6f6857">студия свадебных сайтов</span><span style="color:#9c7b45">·</span>
+        <span style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:26px">save the date</span><span style="color:#9c7b45">·</span>
+        <span style="font-size:13px; letter-spacing:.24em; text-transform:uppercase; color:#6f6857">ваша история любви</span><span style="color:#9c7b45">·</span>
+        <span style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:26px">shaqyru</span><span style="color:#9c7b45">·</span>
+        <span style="font-size:13px; letter-spacing:.24em; text-transform:uppercase; color:#6f6857">студия свадебных сайтов</span><span style="color:#9c7b45">·</span>
+        <span style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:26px">save the date</span><span style="color:#9c7b45">·</span>
+        <span style="font-size:13px; letter-spacing:.24em; text-transform:uppercase; color:#6f6857">ваша история любви</span><span style="color:#9c7b45">·</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ПОРТФОЛИО -->
+  <section id="portfolio" data-screen-label="Портфолио" style="padding:140px clamp(24px,5vw,72px) 120px">
+    <div data-reveal style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:64px; gap:24px; flex-wrap:wrap">
+      <div>
+        <div data-i18n="folio_label" style="font-size:12px; letter-spacing:.28em; text-transform:uppercase; color:#9c7b45; margin-bottom:16px">Портфолио</div>
+        <h2 data-i18n="folio_title" data-words style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:400; font-size:clamp(36px,4.6vw,72px); line-height:1.05">Каждая пара — своя история</h2>
+      </div>
+      <div style="font-size:13px; color:#6f6857">2024 — 2026</div>
+    </div>
+    <div id="folioList">
+      <a data-folio-row="1" href="project.html" style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; padding:30px 0; border-top:1px solid rgba(33,29,22,.16); text-decoration:none; color:#211d16; transition:padding .4s cubic-bezier(.22,1,.36,1), color .3s" style-hover="color:#9c7b45; padding-left:18px">
+        <span style="font-family:'Cormorant Garamond',serif; font-size:clamp(32px,4.4vw,68px); line-height:1.05">Аружан &amp; Алихан</span>
+        <span style="display:flex; gap:26px; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#6f6857; white-space:nowrap"><span>Классика</span><span>Алматы · 2026</span></span>
+      </a>
+      <a data-folio-row="2" href="project.html" style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; padding:30px 0; border-top:1px solid rgba(33,29,22,.16); text-decoration:none; color:#211d16; transition:padding .4s cubic-bezier(.22,1,.36,1), color .3s" style-hover="color:#9c7b45; padding-left:18px">
+        <span style="font-family:'Cormorant Garamond',serif; font-size:clamp(32px,4.4vw,68px); line-height:1.05">Дана &amp; Ерлан</span>
+        <span style="display:flex; gap:26px; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#6f6857; white-space:nowrap"><span>Минимализм</span><span>Астана · 2026</span></span>
+      </a>
+      <a data-folio-row="3" href="project.html" style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; padding:30px 0; border-top:1px solid rgba(33,29,22,.16); text-decoration:none; color:#211d16; transition:padding .4s cubic-bezier(.22,1,.36,1), color .3s" style-hover="color:#9c7b45; padding-left:18px">
+        <span style="font-family:'Cormorant Garamond',serif; font-size:clamp(32px,4.4vw,68px); line-height:1.05">Камила &amp; Тимур</span>
+        <span style="display:flex; gap:26px; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#6f6857; white-space:nowrap"><span>Ботаника</span><span>Шымкент · 2025</span></span>
+      </a>
+      <a data-folio-row="4" href="project.html" style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; padding:30px 0; border-top:1px solid rgba(33,29,22,.16); text-decoration:none; color:#211d16; transition:padding .4s cubic-bezier(.22,1,.36,1), color .3s" style-hover="color:#9c7b45; padding-left:18px">
+        <span style="font-family:'Cormorant Garamond',serif; font-size:clamp(32px,4.4vw,68px); line-height:1.05">Айгерим &amp; Санжар</span>
+        <span style="display:flex; gap:26px; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#6f6857; white-space:nowrap"><span>Ар-деко</span><span>Алматы · 2025</span></span>
+      </a>
+      <a data-folio-row="5" href="project.html" style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; padding:30px 0; border-top:1px solid rgba(33,29,22,.16); text-decoration:none; color:#211d16; transition:padding .4s cubic-bezier(.22,1,.36,1), color .3s" style-hover="color:#9c7b45; padding-left:18px">
+        <span style="font-family:'Cormorant Garamond',serif; font-size:clamp(32px,4.4vw,68px); line-height:1.05">Мадина &amp; Нурлан</span>
+        <span style="display:flex; gap:26px; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#6f6857; white-space:nowrap"><span>Модерн</span><span>Тараз · 2025</span></span>
+      </a>
+      <a data-folio-row="6" href="project.html" style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; padding:30px 0; border-top:1px solid rgba(33,29,22,.16); border-bottom:1px solid rgba(33,29,22,.16); text-decoration:none; color:#211d16; transition:padding .4s cubic-bezier(.22,1,.36,1), color .3s" style-hover="color:#9c7b45; padding-left:18px">
+        <span style="font-family:'Cormorant Garamond',serif; font-size:clamp(32px,4.4vw,68px); line-height:1.05">Жанель &amp; Даниял</span>
+        <span style="display:flex; gap:26px; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#6f6857; white-space:nowrap"><span>Классика</span><span>Астана · 2024</span></span>
+      </a>
+    </div>
+    <!-- Плавающее превью -->
+    <div id="fprev" style="position:fixed; left:0; top:0; width:320px; height:400px; z-index:55; pointer-events:none; opacity:0; transition:opacity .3s ease; overflow:hidden; will-change:transform; box-shadow:0 30px 80px rgba(28,25,19,.35)">
+      <div data-pane="1" style="position:absolute; inset:0; opacity:0; transition:opacity .25s ease"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="folio-1" src="uploads/Image from Kosaev (20).jpg" shape="rect" radius="0" placeholder="превью — Аружан & Алихан" style="width:100%; height:100%" hint-size="100%,100%"></x-import></div>
+      <div data-pane="2" style="position:absolute; inset:0; opacity:0; transition:opacity .25s ease"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="folio-2" src="uploads/Image from Kosaev (17).jpg" shape="rect" radius="0" placeholder="превью — Дана & Ерлан" style="width:100%; height:100%" hint-size="100%,100%"></x-import></div>
+      <div data-pane="3" style="position:absolute; inset:0; opacity:0; transition:opacity .25s ease"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="folio-3" src="uploads/Image from Kosaev (11).jpg" shape="rect" radius="0" placeholder="превью — Камила & Тимур" style="width:100%; height:100%" hint-size="100%,100%"></x-import></div>
+      <div data-pane="4" style="position:absolute; inset:0; opacity:0; transition:opacity .25s ease"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="folio-4" src="uploads/Image from Kosaev (14).jpg" shape="rect" radius="0" placeholder="превью — Айгерим & Санжар" style="width:100%; height:100%" hint-size="100%,100%"></x-import></div>
+      <div data-pane="5" style="position:absolute; inset:0; opacity:0; transition:opacity .25s ease"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="folio-5" src="uploads/Image from Kosaev (10).jpg" shape="rect" radius="0" placeholder="превью — Мадина & Нурлан" style="width:100%; height:100%" hint-size="100%,100%"></x-import></div>
+      <div data-pane="6" style="position:absolute; inset:0; opacity:0; transition:opacity .25s ease"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="folio-6" src="uploads/Image from Kosaev (4).jpg" shape="rect" radius="0" placeholder="превью — Жанель & Даниял" style="width:100%; height:100%" hint-size="100%,100%"></x-import></div>
+    </div>
+  </section>
+
+  <!-- ТАРИФЫ -->
+  <section id="pricing" data-screen-label="Тарифы" style="padding:120px clamp(24px,5vw,72px); background:#ede6d8">
+    <div data-reveal style="margin-bottom:64px">
+      <div data-i18n="price_label" style="font-size:12px; letter-spacing:.28em; text-transform:uppercase; color:#9c7b45; margin-bottom:16px">Тарифы</div>
+      <h2 data-i18n="price_title" data-words style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:400; font-size:clamp(36px,4.6vw,72px); line-height:1.05">Формат под вашу свадьбу</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:20px; align-items:stretch">
+      <div data-reveal="0" style="background:#faf6ee; border:1px solid rgba(33,29,22,.12); padding:44px 36px; display:flex; flex-direction:column; transition:transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s" style-hover="transform:translateY(-8px); box-shadow:0 24px 60px rgba(28,25,19,.12)">
+        <div style="font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#6f6857">01</div>
+        <h3 style="margin:18px 0 6px; font-family:'Cormorant Garamond',serif; font-weight:400; font-style:italic; font-size:38px">«Классик»</h3>
+        <p data-i18n="t1_desc" style="margin:0 0 28px; color:#6f6857; font-size:14px">Готовый дизайн из коллекции — быстро и со вкусом</p>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:44px; margin-bottom:30px">79 000 ₸</div>
+        <div style="display:flex; flex-direction:column; font-size:14px; color:#6f6857; margin-bottom:36px">
+          <div data-i18n="t1f1" style="padding:12px 0; border-top:1px solid rgba(33,29,22,.1)">Одностраничный сайт</div>
+          <div data-i18n="t1f2" style="padding:12px 0; border-top:1px solid rgba(33,29,22,.1)">RSVP-форма для гостей</div>
+          <div data-i18n="t1f3" style="padding:12px 0; border-top:1px solid rgba(33,29,22,.1)">Карта и обратный отсчёт</div>
+          <div data-i18n="t1f4" style="padding:12px 0; border-top:1px solid rgba(33,29,22,.1)">До 200 гостей</div>
+          <div data-i18n="t1f5" style="padding:12px 0; border-top:1px solid rgba(33,29,22,.1)">Запуск за 3 дня</div>
+        </div>
+        <a data-i18n="t_cta" href="#contact" style="margin-top:auto; text-align:center; color:#211d16; text-decoration:none; font-size:12px; letter-spacing:.18em; text-transform:uppercase; border:1px solid rgba(33,29,22,.4); border-radius:999px; padding:14px 28px" style-hover="background:#211d16; color:#f5f0e6">Выбрать</a>
+      </div>
+      <div data-reveal="120" style="position:relative; border:1px solid #9c7b45; background:#fbf7ef; padding:44px 36px; display:flex; flex-direction:column; transition:transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s" style-hover="transform:translateY(-8px); box-shadow:0 24px 60px rgba(28,25,19,.14)">
+        <div data-i18n="t_badge" style="position:absolute; top:-13px; right:28px; background:#9c7b45; color:#f5f0e6; font-size:11px; letter-spacing:.18em; text-transform:uppercase; padding:6px 14px">выбирают чаще</div>
+        <div style="font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#6f6857">02</div>
+        <h3 style="margin:18px 0 6px; font-family:'Cormorant Garamond',serif; font-weight:400; font-style:italic; font-size:38px">«Премиум»</h3>
+        <p data-i18n="t2_desc" style="margin:0 0 28px; color:#6f6857; font-size:14px">Индивидуальный дизайн вашей истории</p>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:44px; margin-bottom:30px; color:#9c7b45">149 000 ₸</div>
+        <div style="display:flex; flex-direction:column; font-size:14px; color:#6f6857; margin-bottom:36px">
+          <div data-i18n="t2f1" style="padding:12px 0; border-top:1px solid rgba(33,29,22,.1)">Всё из тарифа «Классик»</div>
+          <div data-i18n="t2f2" style="padding:12px 0; border-top:1px solid rgba(33,29,22,.1)">Индивидуальный дизайн</div>
+          <div style="padding:12px 0; border-top:1px solid rgba(33,29,22,.1)">3 языка: qaz · rus · eng</div>
+          <div data-i18n="t2f4" style="padding:12px 0; border-top:1px solid rgba(33,29,22,.1)">Именные приглашения гостям</div>
+          <div data-i18n="t2f5" style="padding:12px 0; border-top:1px solid rgba(33,29,22,.1)">Музыка и видео пары</div>
+          <div data-i18n="t2f6" style="padding:12px 0; border-top:1px solid rgba(33,29,22,.1)">Запуск за 7 дней</div>
+        </div>
+        <a data-i18n="t_cta" href="#contact" style="margin-top:auto; text-align:center; color:#f5f0e6; background:#211d16; text-decoration:none; font-size:12px; letter-spacing:.18em; text-transform:uppercase; border:1px solid #211d16; border-radius:999px; padding:14px 28px" style-hover="background:transparent; color:#211d16">Выбрать</a>
+      </div>
+      <div data-reveal="240" style="background:#faf6ee; border:1px solid rgba(33,29,22,.12); padding:44px 36px; display:flex; flex-direction:column; transition:transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s" style-hover="transform:translateY(-8px); box-shadow:0 24px 60px rgba(28,25,19,.12)">
+        <div style="font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#6f6857">03</div>
+        <h3 style="margin:18px 0 6px; font-family:'Cormorant Garamond',serif; font-weight:400; font-style:italic; font-size:38px">«Люкс»</h3>
+        <p data-i18n="t3_desc" style="margin:0 0 28px; color:#6f6857; font-size:14px">Полное сопровождение до дня свадьбы</p>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:44px; margin-bottom:30px">290 000 ₸</div>
+        <div style="display:flex; flex-direction:column; font-size:14px; color:#6f6857; margin-bottom:36px">
+          <div data-i18n="t3f1" style="padding:12px 0; border-top:1px solid rgba(33,29,22,.1)">Всё из тарифа «Премиум»</div>
+          <div data-i18n="t3f2" style="padding:12px 0; border-top:1px solid rgba(33,29,22,.1)">Арт-директор проекта</div>
+          <div data-i18n="t3f3" style="padding:12px 0; border-top:1px solid rgba(33,29,22,.1)">Анимация и 3D-детали</div>
+          <div data-i18n="t3f4" style="padding:12px 0; border-top:1px solid rgba(33,29,22,.1)">Рассадка и дресс-код</div>
+          <div data-i18n="t3f5" style="padding:12px 0; border-top:1px solid rgba(33,29,22,.1)">QR-экран на банкете</div>
+          <div data-i18n="t3f6" style="padding:12px 0; border-top:1px solid rgba(33,29,22,.1)">Поддержка в день свадьбы</div>
+        </div>
+        <a data-i18n="t_cta" href="#contact" style="margin-top:auto; text-align:center; color:#211d16; text-decoration:none; font-size:12px; letter-spacing:.18em; text-transform:uppercase; border:1px solid rgba(33,29,22,.4); border-radius:999px; padding:14px 28px" style-hover="background:#211d16; color:#f5f0e6">Выбрать</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ПРОЦЕСС -->
+  <section id="process" data-screen-label="Процесс" style="padding:140px clamp(24px,5vw,72px)">
+    <div data-reveal style="margin-bottom:72px">
+      <div data-i18n="process_label" style="font-size:12px; letter-spacing:.28em; text-transform:uppercase; color:#9c7b45; margin-bottom:16px">Процесс</div>
+      <h2 data-i18n="process_title" data-words style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:400; font-size:clamp(36px,4.6vw,72px); line-height:1.05">От брифа до свадьбы — без суеты</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:0">
+      <div data-reveal="0" style="border-left:1px solid rgba(33,29,22,.16); padding:8px 32px 8px 28px">
+        <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:56px; color:#9c7b45; line-height:1">01</div>
+        <h3 data-i18n="s1t" style="margin:22px 0 10px; font-size:17px; font-weight:600; letter-spacing:.04em">Знакомство</h3>
+        <p data-i18n="s1d" style="margin:0; color:#6f6857; font-size:14px">Короткий бриф: история пары, дата, стиль свадьбы.</p>
+      </div>
+      <div data-reveal="100" style="border-left:1px solid rgba(33,29,22,.16); padding:8px 32px 8px 28px">
+        <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:56px; color:#9c7b45; line-height:1">02</div>
+        <h3 data-i18n="s2t" style="margin:22px 0 10px; font-size:17px; font-weight:600; letter-spacing:.04em">Дизайн</h3>
+        <p data-i18n="s2d" style="margin:0; color:#6f6857; font-size:14px">Показываем концепцию через 48 часов, правим вместе.</p>
+      </div>
+      <div data-reveal="200" style="border-left:1px solid rgba(33,29,22,.16); padding:8px 32px 8px 28px">
+        <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:56px; color:#9c7b45; line-height:1">03</div>
+        <h3 data-i18n="s3t" style="margin:22px 0 10px; font-size:17px; font-weight:600; letter-spacing:.04em">Наполнение</h3>
+        <p data-i18n="s3d" style="margin:0; color:#6f6857; font-size:14px">Тексты на трёх языках, фото, музыка, карта, RSVP.</p>
+      </div>
+      <div data-reveal="300" style="border-left:1px solid rgba(33,29,22,.16); padding:8px 32px 8px 28px">
+        <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:56px; color:#9c7b45; line-height:1">04</div>
+        <h3 data-i18n="s4t" style="margin:22px 0 10px; font-size:17px; font-weight:600; letter-spacing:.04em">Запуск</h3>
+        <p data-i18n="s4d" style="margin:0; color:#6f6857; font-size:14px">Ссылка и QR готовы — рассылайте гостям.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- О СТУДИИ -->
+  <section id="about" data-screen-label="О студии" style="padding:120px clamp(24px,5vw,72px); background:#ede6d8; overflow:hidden">
+    <div style="display:grid; grid-template-columns:1.1fr 1fr; gap:clamp(40px,6vw,100px); align-items:center">
+      <div data-reveal>
+        <div data-i18n="about_label" style="font-size:12px; letter-spacing:.28em; text-transform:uppercase; color:#9c7b45; margin-bottom:16px">О студии</div>
+        <h2 data-i18n="about_title" data-words style="margin:0 0 28px; font-family:'Cormorant Garamond',serif; font-weight:400; font-size:clamp(36px,4.2vw,64px); line-height:1.08">Свадьба начинается с приглашения</h2>
+        <p data-i18n="about_p1" style="margin:0 0 44px; color:#6f6857; max-width:520px">Shaqyru — студия из Алматы. Мы верим, что приглашение — первое впечатление о вашем празднике, и делаем его безупречным: дизайн, типографика, музыка и деталь за деталью.</p>
+        <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; border-top:1px solid rgba(33,29,22,.16); padding-top:32px">
+          <div>
+            <div style="font-family:'Cormorant Garamond',serif; font-size:44px; line-height:1"><span data-count="120">120</span>+</div>
+            <div data-i18n="st1" style="font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:#6f6857; margin-top:10px">свадебных сайтов</div>
+          </div>
+          <div>
+            <div style="font-family:'Cormorant Garamond',serif; font-size:44px; line-height:1"><span data-count="3">3</span></div>
+            <div data-i18n="st2" style="font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:#6f6857; margin-top:10px">языка на каждом сайте</div>
+          </div>
+          <div>
+            <div style="font-family:'Cormorant Garamond',serif; font-size:44px; line-height:1"><span data-count="48">48</span>ч</div>
+            <div data-i18n="st3" style="font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:#6f6857; margin-top:10px">до первой концепции</div>
+          </div>
+        </div>
+      </div>
+      <div data-reveal="150" style="position:relative; height:560px">
+        <div style="position:absolute; right:0; top:0; width:72%; height:440px; overflow:hidden">
+          <div data-plx style="position:absolute; left:0; right:0; top:-8%; bottom:-8%; will-change:transform">
+            <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="about-1" src="uploads/Image from Kosaev (22).jpg" shape="rect" radius="0" placeholder="фото — студия за работой" style="width:100%; height:100%" hint-size="100%,100%"></x-import>
+          </div>
+        </div>
+        <div style="position:absolute; left:0; bottom:0; width:44%; height:300px; overflow:hidden; border:6px solid #ede6d8">
+          <div data-plx style="position:absolute; left:0; right:0; top:-10%; bottom:-10%; will-change:transform">
+            <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="about-2" src="uploads/Image from Kosaev (3).jpg" shape="rect" radius="0" placeholder="деталь — макет приглашения" style="width:100%; height:100%" hint-size="100%,100%"></x-import>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ОТЗЫВЫ -->
+  <section data-screen-label="Отзывы" style="padding:140px clamp(24px,5vw,72px)">
+    <div data-reveal style="margin-bottom:64px">
+      <div data-i18n="rev_label" style="font-size:12px; letter-spacing:.28em; text-transform:uppercase; color:#9c7b45; margin-bottom:16px">Отзывы</div>
+      <h2 data-i18n="rev_title" data-words style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:400; font-size:clamp(36px,4.6vw,72px); line-height:1.05">Слова наших пар</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:48px">
+      <figure data-reveal="0" style="margin:0; border-top:1px solid rgba(33,29,22,.16); padding-top:32px">
+        <blockquote style="margin:0 0 26px; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:24px; line-height:1.4">«Гости открывали сайт и сразу звонили родителям — настолько красиво. RSVP собрали за два дня.»</blockquote>
+        <figcaption style="font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#6f6857">Аружан &amp; Алихан — Алматы</figcaption>
+      </figure>
+      <figure data-reveal="120" style="margin:0; border-top:1px solid rgba(33,29,22,.16); padding-top:32px">
+        <blockquote style="margin:0 0 26px; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:24px; line-height:1.4">«Сделали за неделю, на казахском и английском. Бабушке читали вслух раздел про нашу историю.»</blockquote>
+        <figcaption style="font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#6f6857">Дана &amp; Ерлан — Астана</figcaption>
+      </figure>
+      <figure data-reveal="240" style="margin:0; border-top:1px solid rgba(33,29,22,.16); padding-top:32px">
+        <blockquote style="margin:0 0 26px; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:24px; line-height:1.4">«QR на банкете — отдельный восторг. Пожелания гостей теперь храним как альбом.»</blockquote>
+        <figcaption style="font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#6f6857">Камила &amp; Тимур — Шымкент</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- КОНТАКТ -->
+  <section id="contact" data-screen-label="Контакт" style="padding:140px clamp(24px,5vw,72px) 100px; background:#1c1913; color:#f0e9db">
+    <div style="max-width:860px; margin:0 auto; text-align:center">
+      <div data-reveal>
+        <div data-i18n="contact_label" style="font-size:12px; letter-spacing:.28em; text-transform:uppercase; color:#cbb489; margin-bottom:20px">Контакт</div>
+        <h2 data-i18n="contact_title" data-words style="margin:0 0 18px; font-family:'Cormorant Garamond',serif; font-weight:400; font-size:clamp(44px,6.4vw,104px); line-height:1.02">Расскажите о вашей свадьбе</h2>
+        <p data-i18n="f_note" style="margin:0 0 64px; color:#a5997f; font-size:14px">Ответим в течение дня</p>
+      </div>
+      <form id="leadForm" data-reveal="120" onSubmit="{{ submit }}" style="text-align:left">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-bottom:40px">
+          <label style="display:flex; flex-direction:column; gap:12px">
+            <span data-i18n="f_names" style="font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:#a5997f">Имена пары</span>
+            <input type="text" placeholder="Аружан & Алихан" style="background:transparent; border:none; border-bottom:1px solid rgba(240,233,219,.35); color:#f0e9db; font-family:'Cormorant Garamond',serif; font-size:26px; padding:8px 0; outline:none" style-focus="border-bottom-color:#cbb489">
+          </label>
+          <label style="display:flex; flex-direction:column; gap:12px">
+            <span data-i18n="f_date" style="font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:#a5997f">Дата свадьбы</span>
+            <input type="text" placeholder="14.08.2026" style="background:transparent; border:none; border-bottom:1px solid rgba(240,233,219,.35); color:#f0e9db; font-family:'Cormorant Garamond',serif; font-size:26px; padding:8px 0; outline:none" style-focus="border-bottom-color:#cbb489">
+          </label>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr auto; gap:40px; align-items:end">
+          <label style="display:flex; flex-direction:column; gap:12px">
+            <span data-i18n="f_phone" style="font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:#a5997f">WhatsApp / телефон</span>
+            <input type="tel" placeholder="+7 700 000 00 00" style="background:transparent; border:none; border-bottom:1px solid rgba(240,233,219,.35); color:#f0e9db; font-family:'Cormorant Garamond',serif; font-size:26px; padding:8px 0; outline:none" style-focus="border-bottom-color:#cbb489">
+          </label>
+          <button data-i18n="f_btn" type="submit" style="cursor:pointer; color:#1c1913; background:#f0e9db; font-family:'Manrope',sans-serif; font-size:12px; letter-spacing:.18em; text-transform:uppercase; border:1px solid #f0e9db; border-radius:999px; padding:18px 40px" style-hover="background:transparent; color:#f0e9db">Отправить заявку</button>
+        </div>
+      </form>
+      <div id="formDone" style="display:none; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:32px; color:#cbb489; padding:40px 0">Рахмет!</div>
+    </div>
+  </section>
+
+  <!-- ФУТЕР -->
+  <footer style="padding:56px clamp(24px,5vw,72px) 40px; background:#1c1913; color:#f0e9db; border-top:1px solid rgba(240,233,219,.14)">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:32px; flex-wrap:wrap">
+      <div>
+        <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:30px">shaqyru<sup style="font-size:12px; font-style:normal">®</sup></div>
+        <div data-i18n="footer_tag" style="font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:#a5997f; margin-top:12px">студия свадебных сайтов · Алматы</div>
+      </div>
+      <div style="display:flex; gap:34px; font-size:12px; letter-spacing:.16em; text-transform:uppercase">
+        <a data-i18n="nav_folio" href="#portfolio" style="color:#d4cab6; text-decoration:none" style-hover="color:#f0e9db">Портфолио</a>
+        <a data-i18n="nav_price" href="#pricing" style="color:#d4cab6; text-decoration:none" style-hover="color:#f0e9db">Тарифы</a>
+        <a data-i18n="nav_contact" href="#contact" style="color:#d4cab6; text-decoration:none" style-hover="color:#f0e9db">Контакт</a>
+        <a href="#top" style="color:#d4cab6; text-decoration:none" style-hover="color:#f0e9db">Instagram</a>
+      </div>
+    </div>
+    <div style="display:flex; justify-content:space-between; gap:24px; margin-top:48px; font-size:12px; color:#a5997f">
+      <span>© 2026 shaqyru</span>
+      <span>Алматы · Астана · online</span>
+    </div>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;lang&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;ru&quot;, &quot;kk&quot;, &quot;en&quot;], &quot;default&quot;: &quot;ru&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Язык&quot;},
+  &quot;showPreloader&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Анимации&quot;},
+  &quot;parallax&quot;: {&quot;editor&quot;: &quot;range&quot;, &quot;default&quot;: 0.22, &quot;min&quot;: 0, &quot;max&quot;: 0.5, &quot;step&quot;: 0.02, &quot;unit&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;number&quot;, &quot;section&quot;: &quot;Анимации&quot;}
+}">
+class Component extends DCLogic {
+  componentDidMount() {
+    if (this.props.showPreloader === false) {
+      const p = document.getElementById('preloader');
+      if (p) p.remove();
+    }
+    // i18n
+    this._nodes = Array.from(document.querySelectorAll('[data-i18n]'));
+    this._ru = {};
+    this._nodes.forEach((n) => {
+      if (!(n.dataset.i18n in this._ru)) this._ru[n.dataset.i18n] = n.textContent;
+    });
+    this._lang = 'ru';
+    this.applyLang(this.props.lang || 'ru');
+
+    // reveal-блоки
+    const items = Array.from(document.querySelectorAll('[data-reveal]'));
+    items.forEach((el) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(34px)';
+      el.style.transition = 'opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1)';
+      el.style.transitionDelay = (el.dataset.reveal || 0) + 'ms';
+    });
+    this._io = new IntersectionObserver((es) => {
+      es.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'none';
+          this._io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    items.forEach((el) => this._io.observe(el));
+
+    // пословный reveal заголовков
+    this._tio = new IntersectionObserver((es) => {
+      es.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.dataset.revealed = '1';
+          e.target.querySelectorAll('[data-w]').forEach((w) => { w.style.transform = 'none'; });
+          this._tio.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    document.querySelectorAll('[data-words]').forEach((el) => this._tio.observe(el));
+
+    // счётчики статистики
+    this._cio = new IntersectionObserver((es) => {
+      es.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        this._cio.unobserve(el);
+        const target = parseInt(el.dataset.count, 10) || 0;
+        const t0 = performance.now();
+        const dur = 1300;
+        const tick = (t) => {
+          const p = Math.min(1, (t - t0) / dur);
+          const ease = 1 - Math.pow(1 - p, 3);
+          el.textContent = String(Math.round(target * ease));
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      });
+    }, { threshold: 0.6 });
+    document.querySelectorAll('[data-count]').forEach((el) => this._cio.observe(el));
+
+    // превью портфолио следует за курсором
+    const prev = document.getElementById('fprev');
+    const panes = prev ? Array.from(prev.querySelectorAll('[data-pane]')) : [];
+    document.querySelectorAll('[data-folio-row]').forEach((r) => {
+      r.addEventListener('mouseenter', () => {
+        panes.forEach((p) => { p.style.opacity = p.dataset.pane === r.dataset.folioRow ? '1' : '0'; });
+        if (prev) prev.style.opacity = '1';
+      });
+      r.addEventListener('mouseleave', () => { if (prev) prev.style.opacity = '0'; });
+    });
+    this._tx = window.innerWidth / 2; this._ty = 300;
+    this._cx = this._tx; this._cy = this._ty;
+    this._mm = (e) => { this._tx = e.clientX; this._ty = e.clientY; };
+    window.addEventListener('mousemove', this._mm);
+
+    // общий цикл: параллакс героя, параллакс фото, превью с наклоном
+    const k = (typeof this.props.parallax === 'number') ? this.props.parallax : 0.22;
+    const hero = document.getElementById('heroPar');
+    const plx = Array.from(document.querySelectorAll('[data-plx]'));
+    const loop = () => {
+      this._cx += (this._tx - this._cx) * 0.1;
+      this._cy += (this._ty - this._cy) * 0.1;
+      if (prev) {
+        const rot = Math.max(-6, Math.min(6, (this._tx - this._cx) * 0.04));
+        prev.style.transform = 'translate(' + (this._cx + 30) + 'px,' + (this._cy - 200) + 'px) rotate(' + rot + 'deg)';
+      }
+      if (hero) hero.style.transform = 'translateY(' + (window.scrollY * k) + 'px)';
+      plx.forEach((el) => {
+        const r = el.parentElement.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > window.innerHeight) return;
+        const off = (r.top + r.height / 2 - window.innerHeight / 2) * -0.08;
+        el.style.transform = 'translateY(' + off + 'px)';
+      });
+      this._raf = requestAnimationFrame(loop);
+    };
+    loop();
+  }
+
+  componentWillUnmount() {
+    cancelAnimationFrame(this._raf);
+    [this._io, this._tio, this._cio].forEach((o) => { if (o) o.disconnect(); });
+    window.removeEventListener('mousemove', this._mm);
+  }
+
+  _split(el) {
+    const words = el.textContent.trim().split(/\s+/);
+    const done = el.dataset.revealed === '1';
+    el.textContent = '';
+    words.forEach((w, i) => {
+      const outer = document.createElement('span');
+      outer.style.cssText = 'display:inline-block;overflow:hidden;vertical-align:top;';
+      const inner = document.createElement('span');
+      inner.setAttribute('data-w', '');
+      inner.style.cssText = 'display:inline-block;transform:' + (done ? 'none' : 'translateY(115%)') +
+        ';transition:transform .9s cubic-bezier(.22,1,.36,1) ' + (i * 70) + 'ms;';
+      inner.textContent = w;
+      outer.appendChild(inner);
+      el.appendChild(outer);
+      if (i < words.length - 1) el.appendChild(document.createTextNode(' '));
+    });
+  }
+
+  applyLang(l) {
+    const D = Component.I18N;
+    this._lang = l;
+    this._nodes.forEach((n) => {
+      const key = n.dataset.i18n;
+      const v = l === 'ru' ? this._ru[key] : (D[l] && D[l][key]);
+      if (v != null) n.textContent = v;
+      if (n.dataset.words != null) this._split(n);
+    });
+    // заголовки без i18n тоже разбиваем один раз
+    document.querySelectorAll('[data-words]:not([data-i18n])').forEach((n) => {
+      if (!n.querySelector('[data-w]')) this._split(n);
+    });
+    document.querySelectorAll('[data-lang-btn]').forEach((b) => {
+      const on = b.dataset.langBtn === l;
+      b.style.opacity = on ? '1' : '.45';
+      b.style.textDecoration = on ? 'underline' : 'none';
+      b.style.textUnderlineOffset = '4px';
+    });
+  }
+
+  submit(e) {
+    e.preventDefault();
+    const m = {
+      ru: 'Рахмет! Заявка получена — ответим в течение дня.',
+      kk: 'Рахмет! Өтінім қабылданды — бір күн ішінде жауап береміз.',
+      en: 'Thank you! We will get back to you within a day.'
+    };
+    const f = document.getElementById('leadForm');
+    const d = document.getElementById('formDone');
+    if (f) f.style.display = 'none';
+    if (d) { d.style.display = 'block'; d.textContent = m[this._lang] || m.ru; }
+  }
+
+  renderVals() {
+    return {
+      toRu: () => this.applyLang('ru'),
+      toKk: () => this.applyLang('kk'),
+      toEn: () => this.applyLang('en'),
+      submit: (e) => this.submit(e)
+    };
+  }
+}
+
+Component.I18N = {
+  kk: {
+    nav_folio: 'Портфолио', nav_price: 'Тарифтер', nav_process: 'Кезеңдер', nav_about: 'Студия туралы', nav_contact: 'Байланыс', nav_cta: 'Өтінім қалдыру',
+    hero_kicker: 'Үйлену тойы сайттарының студиясы · Алматы',
+    hero_l1: 'Үйлену тойына арналған,', hero_l2: 'ұмытылмайтын сайттар',
+    hero_sub: 'Тойыңыздың жеке сайты — жұптың тарихы, RSVP және қонақтарға қажет барлық ақпарат бір әдемі сілтемеде.',
+    hero_cta: 'Күнді тексеру', hero_scroll: 'төмен',
+    folio_label: 'Портфолио', folio_title: 'Әр жұптың өз тарихы бар',
+    price_label: 'Тарифтер', price_title: 'Тойыңызға лайық формат',
+    t1_desc: 'Коллекциядағы дайын дизайн — жылдам әрі талғаммен',
+    t2_desc: 'Сіздің тарихыңызға жеке дизайн',
+    t3_desc: 'Той күніне дейін толық сүйемелдеу',
+    t1f1: 'Бір беттік сайт', t1f2: 'Қонақтарға RSVP-форма', t1f3: 'Карта және кері санақ', t1f4: '200 қонаққа дейін', t1f5: '3 күнде іске қосу',
+    t2f1: '«Классик» тарифінің бәрі', t2f2: 'Жеке дизайн', t2f4: 'Қонақтарға есімді шақырулар', t2f5: 'Жұптың әні мен видеосы', t2f6: '7 күнде іске қосу',
+    t3f1: '«Премиум» тарифінің бәрі', t3f2: 'Жобаның арт-директоры', t3f3: 'Анимация мен 3D-детальдар', t3f4: 'Отырғызу және дресс-код', t3f5: 'Банкеттегі QR-экран', t3f6: 'Той күнгі қолдау',
+    t_badge: 'жиі таңдайды', t_cta: 'Таңдау',
+    process_label: 'Кезеңдер', process_title: 'Брифтен тойға дейін — абыржусыз',
+    s1t: 'Танысу', s1d: 'Қысқа бриф: жұптың тарихы, күні, той стилі.',
+    s2t: 'Дизайн', s2d: '48 сағатта тұжырымдама көрсетеміз, бірге түзейміз.',
+    s3t: 'Мазмұн', s3d: 'Үш тілдегі мәтін, фото, музыка, карта, RSVP.',
+    s4t: 'Іске қосу', s4d: 'Сілтеме мен QR дайын — қонақтарға жіберіңіз.',
+    about_label: 'Студия туралы', about_title: 'Той шақырудан басталады',
+    about_p1: 'Shaqyru — Алматыдағы студия. Шақыру — тойыңыз туралы алғашқы әсер деп сенеміз, сондықтан оны мінсіз жасаймыз: дизайн, типографика, музыка және әр детальді ойластырамыз.',
+    st1: 'үйлену тойы сайты', st2: 'тіл әр сайтта', st3: 'алғашқы тұжырымдамаға дейін',
+    rev_label: 'Пікірлер', rev_title: 'Жұптарымыздың сөзі',
+    contact_label: 'Байланыс', contact_title: 'Тойыңыз туралы айтыңыз',
+    f_note: 'Бір күн ішінде жауап береміз',
+    f_names: 'Жұптың есімдері', f_date: 'Той күні', f_phone: 'WhatsApp / телефон', f_btn: 'Өтінім жіберу',
+    footer_tag: 'шақыру сайттарының студиясы · Алматы'
+  },
+  en: {
+    nav_folio: 'Portfolio', nav_price: 'Pricing', nav_process: 'Process', nav_about: 'About', nav_contact: 'Contact', nav_cta: 'Get in touch',
+    hero_kicker: 'Wedding website studio · Almaty',
+    hero_l1: 'Wedding websites', hero_l2: 'they never forget',
+    hero_sub: 'A personal website for your wedding — your story, RSVP and every guest detail in one beautiful link.',
+    hero_cta: 'Check the date', hero_scroll: 'scroll',
+    folio_label: 'Portfolio', folio_title: 'Every couple, their own story',
+    price_label: 'Pricing', price_title: 'A format for your wedding',
+    t1_desc: 'A design from our collection — fast and tasteful',
+    t2_desc: 'A custom design of your story',
+    t3_desc: 'Full care until the wedding day',
+    t1f1: 'One-page website', t1f2: 'RSVP form for guests', t1f3: 'Map & countdown', t1f4: 'Up to 200 guests', t1f5: 'Live in 3 days',
+    t2f1: 'Everything in «Classic»', t2f2: 'Custom design', t2f4: 'Personal guest invitations', t2f5: 'Your music & video', t2f6: 'Live in 7 days',
+    t3f1: 'Everything in «Premium»', t3f2: 'Project art director', t3f3: 'Motion & 3D details', t3f4: 'Seating & dress code', t3f5: 'QR screen at the banquet', t3f6: 'Day-of support',
+    t_badge: 'most popular', t_cta: 'Choose',
+    process_label: 'Process', process_title: 'From brief to the big day',
+    s1t: 'We meet', s1d: 'A short brief: your story, the date, the style.',
+    s2t: 'Design', s2d: 'First concept in 48 hours, refined together.',
+    s3t: 'Content', s3d: 'Copy in three languages, photos, music, map, RSVP.',
+    s4t: 'Launch', s4d: 'Link and QR ready — send it to your guests.',
+    about_label: 'About', about_title: 'A wedding begins with the invitation',
+    about_p1: 'Shaqyru is a studio from Almaty. We believe the invitation is the first impression of your celebration — so we make it flawless: design, typography, music, detail by detail.',
+    st1: 'wedding websites', st2: 'languages per site', st3: 'to the first concept',
+    rev_label: 'Kind words', rev_title: 'From our couples',
+    contact_label: 'Contact', contact_title: 'Tell us about your wedding',
+    f_note: 'We reply within a day',
+    f_names: 'Your names', f_date: 'Wedding date', f_phone: 'WhatsApp / phone', f_btn: 'Send request',
+    footer_tag: 'wedding website studio · Almaty'
+  }
+};
+</script>
+</body>
+</html>

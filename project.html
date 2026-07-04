@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Аружан &amp; Алихан — проект shaqyru</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#f5f0e6}
+  ::selection{background:#9c7b45;color:#f5f0e6}
+  image-slot{display:block;width:100%;height:100%}
+  @keyframes rise{to{transform:translateY(0)}}
+  @keyframes fadein{to{opacity:1}}
+</style>
+</helmet>
+
+<div style="background:#f5f0e6; color:#211d16; font-family:'Manrope',sans-serif; font-size:16px; line-height:1.6; overflow-x:hidden">
+
+  <!-- НАВИГАЦИЯ -->
+  <nav style="position:fixed; top:0; left:0; right:0; z-index:60; display:flex; align-items:center; justify-content:space-between; padding:16px clamp(24px,5vw,72px); background:rgba(245,240,230,.92); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border-bottom:1px solid rgba(33,29,22,.08); color:#211d16">
+    <a href="index.html" style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:26px; color:#211d16; text-decoration:none">shaqyru<sup style="font-size:11px; font-style:normal">®</sup></a>
+    <a href="index.html#portfolio" style="color:#211d16; text-decoration:none; font-size:12px; letter-spacing:.18em; text-transform:uppercase; border:1px solid rgba(33,29,22,.45); border-radius:999px; padding:10px 20px" style-hover="background:#211d16; color:#f5f0e6">← Все проекты</a>
+  </nav>
+
+  <!-- HERO ПРОЕКТА -->
+  <header data-screen-label="Проект — hero" style="padding:180px clamp(24px,5vw,72px) 72px">
+    <div style="font-size:12px; letter-spacing:.28em; text-transform:uppercase; color:#9c7b45; margin-bottom:24px; opacity:0; animation:fadein .8s ease .1s forwards">Проект 01 — Алматы, июнь 2026</div>
+    <h1 style="margin:0; font-family:'Cormorant Garamond',serif; font-weight:400; font-size:clamp(56px,9vw,150px); line-height:.98; letter-spacing:-.01em">
+      <div style="overflow:hidden"><span style="display:inline-block; transform:translateY(112%); animation:rise 1s cubic-bezier(.22,1,.36,1) .2s forwards">Аружан &amp; Алихан</span></div>
+    </h1>
+    <div style="display:flex; gap:40px; margin-top:44px; padding-top:28px; border-top:1px solid rgba(33,29,22,.16); font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#6f6857; flex-wrap:wrap; opacity:0; animation:fadein .8s ease .6s forwards">
+      <span>Стиль — Классика</span>
+      <span>450 гостей</span>
+      <span>3 языка</span>
+      <span>Тариф «Люкс»</span>
+    </div>
+  </header>
+
+  <!-- ГЛАВНЫЙ ЭКРАН САЙТА -->
+  <div style="padding:0 clamp(24px,5vw,72px)">
+    <div style="height:clamp(400px,72vh,760px); overflow:hidden; position:relative">
+      <div data-plx style="position:absolute; left:0; right:0; top:-8%; bottom:-8%; will-change:transform">
+        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="proj-hero" src="uploads/Image from Kosaev (9).jpg" shape="rect" radius="0" placeholder="скриншот — главный экран сайта пары (десктоп)" style="width:100%; height:100%" hint-size="100%,100%"></x-import>
+      </div>
+    </div>
+  </div>
+
+  <!-- О ПРОЕКТЕ -->
+  <section data-screen-label="Проект — детали" style="padding:120px clamp(24px,5vw,72px); display:grid; grid-template-columns:1.1fr 1fr; gap:clamp(40px,6vw,100px)">
+    <div data-reveal>
+      <div style="font-size:12px; letter-spacing:.28em; text-transform:uppercase; color:#9c7b45; margin-bottom:16px">Задача</div>
+      <h2 style="margin:0 0 24px; font-family:'Cormorant Garamond',serif; font-weight:400; font-size:clamp(32px,3.6vw,52px); line-height:1.1">Свадьба на 450 гостей — и сайт, который справился со всем</h2>
+      <p style="margin:0; color:#6f6857; max-width:520px">История знакомства в горах Алматы задала настроение всему дизайну: глубокие тона вечернего неба, серифная типографика и музыка, под которую пара танцевала первый танец. Гости из трёх стран получили именные приглашения на своём языке.</p>
+    </div>
+    <div data-reveal="120" style="display:flex; flex-direction:column; font-size:15px; color:#6f6857; align-self:end">
+      <div style="padding:16px 0; border-top:1px solid rgba(33,29,22,.16); display:flex; justify-content:space-between; gap:24px"><span>Индивидуальный дизайн</span><span style="color:#9c7b45">✓</span></div>
+      <div style="padding:16px 0; border-top:1px solid rgba(33,29,22,.16); display:flex; justify-content:space-between; gap:24px"><span>Именные приглашения — 450 ссылок</span><span style="color:#9c7b45">✓</span></div>
+      <div style="padding:16px 0; border-top:1px solid rgba(33,29,22,.16); display:flex; justify-content:space-between; gap:24px"><span>RSVP и рассадка гостей</span><span style="color:#9c7b45">✓</span></div>
+      <div style="padding:16px 0; border-top:1px solid rgba(33,29,22,.16); display:flex; justify-content:space-between; gap:24px"><span>Плейлист пары и видео</span><span style="color:#9c7b45">✓</span></div>
+      <div style="padding:16px 0; border-top:1px solid rgba(33,29,22,.16); border-bottom:1px solid rgba(33,29,22,.16); display:flex; justify-content:space-between; gap:24px"><span>QR-экран на банкете</span><span style="color:#9c7b45">✓</span></div>
+    </div>
+  </section>
+
+  <!-- МОБИЛЬНЫЕ ЭКРАНЫ -->
+  <section data-screen-label="Проект — мобильные экраны" style="padding:0 clamp(24px,5vw,72px) 120px">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:20px">
+      <div data-reveal="0" style="height:560px">
+        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="proj-m1" src="uploads/Image from Kosaev (15).jpg" shape="rect" radius="0" placeholder="мобильный экран — приглашение" style="width:100%; height:100%" hint-size="100%,100%"></x-import>
+      </div>
+      <div data-reveal="120" style="height:560px; margin-top:56px">
+        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="proj-m2" src="uploads/Image from Kosaev (16).jpg" shape="rect" radius="0" placeholder="мобильный экран — история пары" style="width:100%; height:100%" hint-size="100%,100%"></x-import>
+      </div>
+      <div data-reveal="240" style="height:560px">
+        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="proj-m3" src="uploads/Image from Kosaev (12).jpg" shape="rect" radius="0" placeholder="мобильный экран — RSVP" style="width:100%; height:100%" hint-size="100%,100%"></x-import>
+      </div>
+    </div>
+  </section>
+
+  <!-- ЦИТАТА -->
+  <section data-screen-label="Проект — цитата" style="padding:120px clamp(24px,5vw,72px); background:#ede6d8; text-align:center">
+    <blockquote data-reveal style="margin:0 auto 28px; max-width:820px; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(26px,3vw,40px); line-height:1.35">«Гости открывали сайт и сразу звонили родителям — настолько красиво. RSVP собрали за два дня.»</blockquote>
+    <div data-reveal="120" style="font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#6f6857">Аружан &amp; Алихан</div>
+  </section>
+
+  <!-- СЛЕДУЮЩИЙ ШАГ -->
+  <section data-screen-label="Проект — CTA" style="padding:140px clamp(24px,5vw,72px); background:#1c1913; color:#f0e9db; text-align:center">
+    <div data-reveal style="font-size:12px; letter-spacing:.28em; text-transform:uppercase; color:#cbb489; margin-bottom:20px">Ваша очередь</div>
+    <h2 data-reveal="80" style="margin:0 0 44px; font-family:'Cormorant Garamond',serif; font-weight:400; font-size:clamp(40px,5.6vw,92px); line-height:1.02">Хотите такую же свадьбу?</h2>
+    <a data-reveal="160" href="index.html#contact" style="display:inline-block; color:#1c1913; background:#f0e9db; text-decoration:none; font-size:12px; letter-spacing:.18em; text-transform:uppercase; border-radius:999px; padding:18px 40px; border:1px solid #f0e9db" style-hover="background:transparent; color:#f0e9db">Проверить дату</a>
+  </section>
+
+  <!-- ФУТЕР -->
+  <footer style="padding:48px clamp(24px,5vw,72px); border-top:1px solid rgba(240,233,219,.14); background:#1c1913; color:#a5997f; display:flex; justify-content:space-between; gap:24px; font-size:12px">
+    <span>© 2026 shaqyru</span>
+    <a href="index.html" style="color:#d4cab6; text-decoration:none; letter-spacing:.16em; text-transform:uppercase" style-hover="color:#f0e9db">На главную</a>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    const items = Array.from(document.querySelectorAll('[data-reveal]'));
+    items.forEach((el) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(34px)';
+      el.style.transition = 'opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1)';
+      el.style.transitionDelay = (el.dataset.reveal || 0) + 'ms';
+    });
+    this._io = new IntersectionObserver((es) => {
+      es.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'none';
+          this._io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    items.forEach((el) => this._io.observe(el));
+
+    const plx = Array.from(document.querySelectorAll('[data-plx]'));
+    const loop = () => {
+      plx.forEach((el) => {
+        const r = el.parentElement.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > window.innerHeight) return;
+        const off = (r.top + r.height / 2 - window.innerHeight / 2) * -0.08;
+        el.style.transform = 'translateY(' + off + 'px)';
+      });
+      this._raf = requestAnimationFrame(loop);
+    };
+    loop();
+  }
+  componentWillUnmount() {
+    cancelAnimationFrame(this._raf);
+    if (this._io) this._io.disconnect();
+  }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
