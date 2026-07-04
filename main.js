@@ -302,44 +302,58 @@
     sizeCanvas();
     window.addEventListener('resize', sizeCanvas);
 
-    var px = null, py = null, brush = 0;
-    var idle = 0;
+    // воздушная дымка: частицы-«пшики», каждая живёт долю секунды,
+    // расплывается и тает; холст перерисовывается с нуля каждый кадр
+    var LIFE = 0.62;            // секунд до полного исчезновения
+    var puffs = [];
+    var px = null, py = null;
+
+    function spawn(x, y, speed) {
+      var r = (14 + Math.random() * 14 + Math.min(26, speed * 0.10)) * dpr;
+      puffs.push({
+        x: x + (Math.random() - 0.5) * 14 * dpr,
+        y: y + (Math.random() - 0.5) * 14 * dpr,
+        r: r,
+        born: performance.now()
+      });
+      if (puffs.length > 400) puffs.splice(0, puffs.length - 400);
+    }
 
     window.addEventListener('mousemove', function (e) {
       var x = e.clientX * dpr, y = e.clientY * dpr;
       if (px === null) { px = x; py = y; return; }
       var dx = x - px, dy = y - py;
       var dist = Math.sqrt(dx * dx + dy * dy);
-      // толщина мазка зависит от скорости: медленно — тонко, быстро — широко
-      var target = Math.min(34, 7 + dist * 0.22) * dpr;
-      brush += (target - brush) * 0.35;
-      var steps = Math.max(1, Math.ceil(dist / (3 * dpr)));
-      ctx.globalCompositeOperation = 'source-over';
+      var steps = Math.max(1, Math.ceil(dist / (7 * dpr)));
       for (var i = 1; i <= steps; i++) {
-        var t = i / steps;
-        var ix = px + dx * t, iy = py + dy * t;
-        var r = brush * (0.85 + Math.sin((ix + iy) * 0.05) * 0.15);
-        var g = ctx.createRadialGradient(ix, iy, 0, ix, iy, r);
-        g.addColorStop(0, 'rgba(35,35,35,0.10)');
-        g.addColorStop(0.6, 'rgba(35,35,35,0.05)');
-        g.addColorStop(1, 'rgba(35,35,35,0)');
-        ctx.fillStyle = g;
-        ctx.beginPath();
-        ctx.arc(ix, iy, r, 0, Math.PI * 2);
-        ctx.fill();
+        spawn(px + dx * (i / steps), py + dy * (i / steps), dist);
       }
       px = x; py = y;
-      idle = 0;
     });
 
-    // краска медленно «высыхает»
     gsap.ticker.add(function () {
-      idle++;
-      if (idle === 360) { ctx.clearRect(0, 0, cv.width, cv.height); return; } // добираем остаточные следы
-      if (idle > 360) return; // мышь не двигается, холст чист
-      ctx.globalCompositeOperation = 'destination-out';
-      ctx.fillStyle = 'rgba(0,0,0,0.05)';
-      ctx.fillRect(0, 0, cv.width, cv.height);
+      if (!puffs.length) return;
+      ctx.clearRect(0, 0, cv.width, cv.height);
+      var now = performance.now();
+      var alive = [];
+      for (var i = 0; i < puffs.length; i++) {
+        var p = puffs[i];
+        var t = (now - p.born) / (LIFE * 1000);
+        if (t >= 1) continue;
+        alive.push(p);
+        var fade = (1 - t) * (1 - t);            // быстрое угасание
+        var r = p.r * (1 + t * 0.9);             // облачко расплывается
+        var g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r);
+        g.addColorStop(0, 'rgba(163,146,118,' + (0.055 * fade).toFixed(3) + ')');
+        g.addColorStop(0.55, 'rgba(163,146,118,' + (0.03 * fade).toFixed(3) + ')');
+        g.addColorStop(1, 'rgba(163,146,118,0)');
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      puffs = alive;
+      if (!puffs.length) ctx.clearRect(0, 0, cv.width, cv.height);
     });
   }
 
