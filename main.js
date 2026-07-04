@@ -245,6 +245,63 @@
     });
   }
 
+  /* ---------- след краски за курсором ---------- */
+  if (!reduced && matchMedia('(pointer: fine)').matches) {
+    var cv = document.createElement('canvas');
+    cv.id = 'paint';
+    cv.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(cv);
+    var ctx = cv.getContext('2d');
+    var dpr = Math.min(2, window.devicePixelRatio || 1);
+
+    function sizeCanvas() {
+      cv.width = Math.round(innerWidth * dpr);
+      cv.height = Math.round(innerHeight * dpr);
+    }
+    sizeCanvas();
+    window.addEventListener('resize', sizeCanvas);
+
+    var px = null, py = null, brush = 0;
+    var idle = 0;
+
+    window.addEventListener('mousemove', function (e) {
+      var x = e.clientX * dpr, y = e.clientY * dpr;
+      if (px === null) { px = x; py = y; return; }
+      var dx = x - px, dy = y - py;
+      var dist = Math.sqrt(dx * dx + dy * dy);
+      // толщина мазка зависит от скорости: медленно — тонко, быстро — широко
+      var target = Math.min(34, 7 + dist * 0.22) * dpr;
+      brush += (target - brush) * 0.35;
+      var steps = Math.max(1, Math.ceil(dist / (3 * dpr)));
+      ctx.globalCompositeOperation = 'source-over';
+      for (var i = 1; i <= steps; i++) {
+        var t = i / steps;
+        var ix = px + dx * t, iy = py + dy * t;
+        var r = brush * (0.85 + Math.sin((ix + iy) * 0.05) * 0.15);
+        var g = ctx.createRadialGradient(ix, iy, 0, ix, iy, r);
+        g.addColorStop(0, 'rgba(35,35,35,0.10)');
+        g.addColorStop(0.6, 'rgba(35,35,35,0.05)');
+        g.addColorStop(1, 'rgba(35,35,35,0)');
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.arc(ix, iy, r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      px = x; py = y;
+      idle = 0;
+    });
+
+    // краска медленно «высыхает»
+    gsap.ticker.add(function () {
+      idle++;
+      if (idle === 360) { ctx.clearRect(0, 0, cv.width, cv.height); return; } // добираем остаточные следы
+      if (idle > 360) return; // мышь не двигается, холст чист
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.fillStyle = 'rgba(0,0,0,0.05)';
+      ctx.fillRect(0, 0, cv.width, cv.height);
+    });
+  }
+
   /* ---------- i18n ---------- */
   var I18N = window.SHQ_I18N || {};
   var nodes = document.querySelectorAll('[data-i18n]');
