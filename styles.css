@@ -9,8 +9,8 @@
   --hairline: rgba(35, 35, 35, .14);
   --hairline-strong: rgba(35, 35, 35, .3);
   --pad: clamp(20px, 4.5vw, 64px);
-  --serif: 'Cormorant Garamond', serif;
-  --sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --serif: 'Playfair Display', serif;
+  --sans: 'Onest', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --ease-out: cubic-bezier(.22, 1, .36, 1);
   --ease-io: cubic-bezier(.77, 0, .175, 1);
 }
@@ -241,8 +241,8 @@ header.nav.scrolled {
 .hero-title {
   margin: 0;
   font-family: var(--serif); font-weight: 400;
-  font-size: clamp(52px, 10.5vw, 176px);
-  line-height: 1.02; letter-spacing: -.015em;
+  font-size: clamp(48px, 8.1vw, 140px);
+  line-height: 1.04; letter-spacing: -.015em;
 }
 .hero-title .line { display: block; overflow: hidden; }
 .hero-title .line > .inner { display: inline-flex; align-items: center; gap: .18em; will-change: transform; }
