@@ -324,6 +324,26 @@
     });
   }
 
+  /* ---------- scrollspy: активный пункт меню ---------- */
+  var spyLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  spyLinks.forEach(function (a) {
+    var sec = document.querySelector(a.getAttribute('href'));
+    if (!sec) return;
+    ScrollTrigger.create({
+      trigger: sec,
+      start: 'top 45%',
+      end: 'bottom 45%',
+      onToggle: function (self) {
+        if (self.isActive) {
+          spyLinks.forEach(function (l) { l.classList.remove('active'); });
+          a.classList.add('active');
+        } else {
+          a.classList.remove('active');
+        }
+      }
+    });
+  });
+
   /* ---------- шторка перехода между страницами ---------- */
   var veil = document.getElementById('veil');
   if (veil) {
