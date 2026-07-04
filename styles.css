@@ -46,6 +46,35 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   color: var(--gray);
 }
 
+/* ---------- кастомный курсор: точка + кольцо ---------- */
+@media (pointer: fine) {
+  html.js.has-cursor, html.js.has-cursor body,
+  html.js.has-cursor a, html.js.has-cursor button,
+  html.js.has-cursor input, html.js.has-cursor label { cursor: none; }
+}
+#cursor {
+  position: fixed; left: 0; top: 0; z-index: 300;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  opacity: 0;
+}
+#cursor .c-dot, #cursor .c-ring {
+  position: absolute; left: 0; top: 0;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+#cursor .c-dot {
+  width: 6px; height: 6px;
+  background: #fff;
+}
+#cursor .c-ring {
+  width: 52px; height: 52px;
+  border: 1.5px solid #fff;
+  transition: width .35s var(--ease-out), height .35s var(--ease-out), opacity .35s;
+}
+#cursor.is-link .c-ring { width: 76px; height: 76px; opacity: .85; }
+#cursor.is-press .c-ring { width: 40px; height: 40px; }
+
 /* ---------- след краски за курсором ---------- */
 #paint {
   position: fixed; inset: 0; z-index: 95;

@@ -245,6 +245,47 @@
     });
   }
 
+  /* ---------- кастомный курсор: точка + кольцо ---------- */
+  if (matchMedia('(pointer: fine)').matches) {
+    document.documentElement.classList.add('has-cursor');
+    var cur = document.createElement('div');
+    cur.id = 'cursor';
+    cur.setAttribute('aria-hidden', 'true');
+    cur.innerHTML = '<div class="c-ring"></div><div class="c-dot"></div>';
+    document.body.appendChild(cur);
+
+    var dot = cur.querySelector('.c-dot');
+    var ring = cur.querySelector('.c-ring');
+    var dotX = gsap.quickTo(dot, 'x', { duration: 0.08, ease: 'power2' });
+    var dotY = gsap.quickTo(dot, 'y', { duration: 0.08, ease: 'power2' });
+    var ringX = gsap.quickTo(ring, 'x', { duration: 0.45, ease: 'power3' });
+    var ringY = gsap.quickTo(ring, 'y', { duration: 0.45, ease: 'power3' });
+    var shown = false;
+
+    window.addEventListener('mousemove', function (e) {
+      if (!shown) {
+        shown = true;
+        gsap.set([dot, ring], { x: e.clientX, y: e.clientY });
+        gsap.to(cur, { opacity: 1, duration: 0.3 });
+      }
+      dotX(e.clientX); dotY(e.clientY);
+      ringX(e.clientX); ringY(e.clientY);
+    });
+    document.documentElement.addEventListener('mouseleave', function () {
+      shown = false;
+      gsap.to(cur, { opacity: 0, duration: 0.25 });
+    });
+    window.addEventListener('mousedown', function () { cur.classList.add('is-press'); });
+    window.addEventListener('mouseup', function () { cur.classList.remove('is-press'); });
+
+    // кольцо раскрывается над интерактивными элементами (делегирование —
+    // работает и для превью портфолио, и для пересобранных i18n-ссылок)
+    var HOT = 'a, button, input, label, .folio-row';
+    document.addEventListener('mouseover', function (e) {
+      cur.classList.toggle('is-link', !!e.target.closest(HOT));
+    });
+  }
+
   /* ---------- след краски за курсором ---------- */
   if (!reduced && matchMedia('(pointer: fine)').matches) {
     var cv = document.createElement('canvas');
