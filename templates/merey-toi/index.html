@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add('js')</script>
+<title>Мерей той — шаблон приглашения · shaqyru</title>
+<meta name="description" content="Шаблон сайта-приглашения на мерейтой. Имя, возраст, дата и цвета меняются под вашу семью — запуск за 3 дня.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prata&family=Onest:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #f7efe4;
+  --wine: #56223a;
+  --wine-deep: #3a1526;
+  --gold: #d3a856;
+  --ink: #241a1f;
+  --serif: 'Prata', serif;
+  --sans: 'Onest', sans-serif;
+  --ease: cubic-bezier(.22, 1, .36, 1);
+}
+* { box-sizing: border-box; }
+html { height: 100%; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--sans); font-weight: 300;
+  font-size: 15px; line-height: 1.85;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+::selection { background: var(--gold); color: #fff; }
+a { color: inherit; text-decoration: none; }
+.label { font-size: 10px; letter-spacing: .34em; text-transform: uppercase; font-weight: 400; }
+
+.lang { position: fixed; top: 16px; left: 18px; z-index: 90; display: flex; gap: 10px; mix-blend-mode: difference; color: #fff; }
+.lang button { font: inherit; font-size: 10px; letter-spacing: .22em; text-transform: uppercase; background: none; border: none; color: inherit; cursor: pointer; padding: 4px; opacity: .5; transition: opacity .3s; }
+.lang button.on { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
+
+.tpl-bar {
+  position: fixed; right: 16px; bottom: 16px; z-index: 95;
+  display: flex; align-items: center; gap: 14px;
+  background: var(--ink); color: var(--paper);
+  border-radius: 999px; padding: 10px 10px 10px 22px;
+  font-size: 11px; letter-spacing: .1em;
+  box-shadow: 0 14px 40px rgba(58, 21, 38, .35);
+}
+.tpl-bar .b {
+  background: var(--gold); color: var(--ink);
+  border-radius: 999px; padding: 9px 18px;
+  font-size: 10px; letter-spacing: .2em; text-transform: uppercase; font-weight: 500;
+}
+
+/* hero */
+.hero {
+  min-height: 100svh; background: var(--wine); color: var(--paper);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 80px 24px; position: relative; overflow: hidden;
+}
+.rays {
+  position: absolute; left: 50%; top: 50%;
+  width: clamp(560px, 80vw, 1100px); aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  opacity: .55;
+}
+.rays svg { width: 100%; height: 100%; animation: spin 90s linear infinite; transform-origin: 50% 50%; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .rays svg { animation: none; } }
+.hero .inner { position: relative; }
+.hero .kicker { color: var(--gold); margin-bottom: 30px; }
+.hero .num {
+  font-family: var(--serif);
+  font-size: clamp(150px, 34vw, 420px); line-height: .9;
+  color: var(--paper);
+  text-shadow: 0 30px 90px rgba(0,0,0,.3);
+}
+.hero .num .zh { font-size: .16em; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); display: block; margin-top: 14px; }
+.hero .name {
+  margin-top: clamp(24px, 4vh, 40px);
+  font-family: var(--serif);
+  font-size: clamp(30px, 5.4vw, 56px); line-height: 1.2;
+}
+.hero .date { margin-top: 26px; font-family: var(--serif); font-size: clamp(15px, 2vw, 20px); letter-spacing: .42em; text-indent: .42em; color: var(--gold); }
+
+/* линия-разделитель */
+.rule { display: flex; align-items: center; justify-content: center; gap: 16px; padding: 0 24px; color: var(--gold); }
+.rule::before, .rule::after { content: ""; height: 1px; width: clamp(60px, 12vw, 140px); background: currentColor; opacity: .5; }
+.rule .dia { width: 9px; height: 9px; transform: rotate(45deg); border: 1.4px solid currentColor; }
+
+section { padding: clamp(80px, 13vh, 150px) 24px; }
+.narrow { max-width: 620px; margin: 0 auto; text-align: center; }
+h2 { margin: 0 0 28px; font-family: var(--serif); font-weight: 400; font-size: clamp(26px, 4.6vw, 40px); line-height: 1.3; }
+.narrow p { color: #6b5f66; margin: 0 0 1.5em; }
+.hosts { margin-top: 34px; font-family: var(--serif); font-size: clamp(18px, 2.4vw, 23px); }
+
+.count-sec { background: var(--wine); color: var(--paper); text-align: center; }
+.count-sec .label { color: rgba(247,239,228,.6); }
+.count { display: flex; justify-content: center; gap: clamp(18px, 6vw, 56px); margin-top: 40px; }
+.count .v { font-family: var(--serif); font-size: clamp(38px, 8vw, 68px); line-height: 1; font-variant-numeric: tabular-nums; }
+.count .l { margin-top: 10px; font-size: 9.5px; letter-spacing: .3em; text-transform: uppercase; color: rgba(247,239,228,.55); }
+
+.info-card { max-width: 640px; margin: 0 auto; border: 1px solid rgba(36,26,31,.18); padding: clamp(36px, 6vw, 56px); }
+.info-row { display: grid; grid-template-columns: 120px 1fr; gap: 18px; padding: 18px 0; border-bottom: 1px solid rgba(36,26,31,.12); text-align: left; }
+.info-row:last-child { border-bottom: none; }
+.info-row .k { font-size: 10px; letter-spacing: .28em; text-transform: uppercase; color: #9a8e94; padding-top: 6px; }
+.info-row .v { font-family: var(--serif); font-size: clamp(17px, 2.2vw, 21px); line-height: 1.45; }
+.btn {
+  display: inline-block; margin-top: 38px;
+  border: 1px solid var(--ink); border-radius: 999px; padding: 15px 38px;
+  font-size: 10.5px; letter-spacing: .28em; text-transform: uppercase; font-weight: 400;
+  transition: background .35s var(--ease), color .35s var(--ease);
+}
+.btn:hover { background: var(--ink); color: var(--paper); }
+
+.rsvp { background: var(--wine-deep); color: var(--paper); text-align: center; }
+.rsvp .label { color: rgba(247,239,228,.55); }
+.rsvp .btn { border-color: var(--gold); color: var(--gold); }
+.rsvp .btn:hover { background: var(--gold); color: var(--wine-deep); }
+
+.finale { text-align: center; }
+.finale .big { font-family: var(--serif); font-size: clamp(36px, 7.4vw, 78px); line-height: 1.1; margin: 26px 0 0; }
+
+footer { padding: 44px 24px; text-align: center; font-size: 10px; letter-spacing: .24em; text-transform: uppercase; color: #9a8e94; }
+footer a { border-bottom: 1px solid rgba(36,26,31,.25); padding-bottom: 2px; }
+
+html.js .rv { opacity: 0; transform: translateY(30px); }
+@media (prefers-reduced-motion: reduce) { html.js .rv { opacity: 1; transform: none; } }
+@media (max-width: 560px) {
+  .info-row { grid-template-columns: 96px 1fr; }
+  .tpl-bar { right: 10px; bottom: 10px; padding-left: 16px; }
+  .tpl-bar .t { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="lang">
+  <button data-lang="kk" class="on">QAZ</button>
+  <button data-lang="ru">RU</button>
+</div>
+
+<a class="tpl-bar" href="https://yoodea.github.io/shaqyru/#contact">
+  <span class="t" data-i18n="tpl_like">Ұнады ма? Атын, жасын, түсін өзгертеміз</span>
+  <span class="b" data-i18n="tpl_order">Тапсырыс беру</span>
+</a>
+
+<!-- hero -->
+<header class="hero">
+  <div class="rays" aria-hidden="true">
+    <svg viewBox="0 0 200 200" stroke="#d3a856" stroke-width=".6" opacity=".8">
+      <g>
+        <path d="M100 100 L100 0"/><path d="M100 100 L135 7"/><path d="M100 100 L165 22"/>
+        <path d="M100 100 L188 48"/><path d="M100 100 L200 82"/><path d="M100 100 L198 118"/>
+        <path d="M100 100 L182 152"/><path d="M100 100 L152 182"/><path d="M100 100 L118 198"/>
+        <path d="M100 100 L82 200"/><path d="M100 100 L48 188"/><path d="M100 100 L22 165"/>
+        <path d="M100 100 L7 135"/><path d="M100 100 L0 100"/><path d="M100 100 L7 65"/>
+        <path d="M100 100 L22 35"/><path d="M100 100 L48 12"/><path d="M100 100 L65 2"/>
+      </g>
+    </svg>
+  </div>
+  <div class="inner">
+    <div class="label kicker rv" data-i18n="kicker">Мерейтой</div>
+    <div class="num rv">60<span class="zh" data-i18n="zh">жас</span></div>
+    <div class="name rv" data-i18n="name">Гүлнар Сейітқызы</div>
+    <div class="date rv">20 . 09 . 2026</div>
+  </div>
+</header>
+
+<!-- приглашение -->
+<section>
+  <div class="rule rv" aria-hidden="true"><span class="dia"></span></div>
+  <div class="narrow" style="margin-top:clamp(36px,6vh,60px)">
+    <span class="label rv" style="display:block; margin-bottom:26px; color:#9a8e94" data-i18n="inv_label">Шақыру</span>
+    <h2 class="rv" data-i18n="inv_title">Құрметті қонақтар!</h2>
+    <p class="rv" data-i18n="inv_p1">Ардақты анамыз Гүлнар Сейітқызының 60 жас мерейтойына арналған салтанатты кешке шақырамыз.</p>
+    <p class="rv" data-i18n="inv_p2">Анамыздың мерейлі жасын бірге тойлап, ақ тілектеріңізді арнасаңыздар — қуанышымызға қуаныш қосылады.</p>
+    <div class="hosts rv" data-i18n="hosts">Ізгі ниетпен — балалары мен немерелері</div>
+  </div>
+</section>
+
+<!-- countdown -->
+<section class="count-sec">
+  <span class="label rv" data-i18n="cd_label">Тойға дейін қалды</span>
+  <div class="count rv" id="countdown" data-date="2026-09-20T18:00:00+05:00">
+    <div><div class="v" data-cd="d">—</div><div class="l" data-i18n="cd_d">күн</div></div>
+    <div><div class="v" data-cd="h">—</div><div class="l" data-i18n="cd_h">сағат</div></div>
+    <div><div class="v" data-cd="m">—</div><div class="l" data-i18n="cd_m">минут</div></div>
+    <div><div class="v" data-cd="s">—</div><div class="l" data-i18n="cd_s">секунд</div></div>
+  </div>
+</section>
+
+<!-- детали -->
+<section>
+  <div class="narrow" style="margin-bottom:clamp(36px,6vh,56px)">
+    <span class="label rv" style="display:block; margin-bottom:20px; color:#9a8e94" data-i18n="info_label">Той детальдары</span>
+    <h2 class="rv" data-i18n="info_title">Уақыты мен орны</h2>
+  </div>
+  <div class="info-card rv">
+    <div class="info-row"><div class="k" data-i18n="k_date">Күні</div><div class="v" data-i18n="v_date">2026 жылғы 20 қыркүйек, жексенбі</div></div>
+    <div class="info-row"><div class="k" data-i18n="k_time">Қонақтарды қарсы алу</div><div class="v">18:00</div></div>
+    <div class="info-row"><div class="k" data-i18n="k_place">Мекенжайы</div><div class="v" data-i18n="v_place">«Алтын Адам» мейрамханасы, Алматы</div></div>
+  </div>
+  <div style="text-align:center"><a class="btn rv" href="https://go.2gis.com/" target="_blank" rel="noopener" data-i18n="map">Картадан қарау</a></div>
+</section>
+
+<!-- rsvp -->
+<section class="rsvp">
+  <div class="narrow">
+    <span class="label rv" style="display:block; margin-bottom:24px">RSVP</span>
+    <h2 class="rv" style="color:var(--paper)" data-i18n="rsvp_title">Келетініңізді растаңыз</h2>
+    <p class="rv" style="color:rgba(247,239,228,.7)" data-i18n="rsvp_p">2026 жылғы 5 қыркүйекке дейін жауап берсеңіз, риза боламыз.</p>
+    <a class="btn rv" href="https://wa.me/77000000000" data-i18n="rsvp_btn">WhatsApp арқылы жауап беру</a>
+  </div>
+</section>
+
+<!-- финал -->
+<section class="finale">
+  <div class="rule rv" aria-hidden="true"><span class="dia"></span></div>
+  <div class="big rv" data-i18n="fin">Төріміздің төресі болыңыз!</div>
+</section>
+
+<footer>
+  <span data-i18n="foot">Шаблон</span> · <a href="https://yoodea.github.io/shaqyru/" target="_blank" rel="noopener">shaqyru</a>
+</footer>
+
+<script>
+window.T_I18N = {
+  ru: {
+    tpl_like: 'Нравится? Заменим имя, возраст и цвета', tpl_order: 'Заказать',
+    kicker: 'Юбилей', zh: 'лет', name: 'Гульнар Сейтовна',
+    inv_label: 'Приглашение',
+    inv_title: 'Дорогие гости!',
+    inv_p1: 'Приглашаем вас на торжественный вечер, посвящённый 60-летию нашей дорогой мамы — Гульнар Сейтовны.',
+    inv_p2: 'Разделите с нами радость юбилея и подарите имениннице свои тёплые пожелания.',
+    hosts: 'С уважением — дети и внуки',
+    cd_label: 'До торжества осталось', cd_d: 'дней', cd_h: 'часов', cd_m: 'минут', cd_s: 'секунд',
+    info_label: 'Детали торжества', info_title: 'Время и место',
+    k_date: 'Дата', v_date: '20 сентября 2026, воскресенье',
+    k_time: 'Сбор гостей', k_place: 'Адрес', v_place: 'Ресторан «Алтын Адам», Алматы',
+    map: 'Открыть карту',
+    rsvp_title: 'Подтвердите присутствие', rsvp_p: 'Будем благодарны за ответ до 5 сентября 2026.',
+    rsvp_btn: 'Ответить в WhatsApp',
+    fin: 'Будьте почётным гостем нашего тоя!',
+    foot: 'Шаблон'
+  }
+};
+</script>
+<script src="../../assets/gsap.min.js"></script>
+<script src="../../assets/ScrollTrigger.min.js"></script>
+<script src="../../assets/lenis.min.js"></script>
+<script>
+(function () {
+  gsap.registerPlugin(ScrollTrigger);
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduced) {
+    var lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
+    gsap.ticker.lagSmoothing(0);
+  }
+  gsap.utils.toArray('.rv').forEach(function (el) {
+    gsap.to(el, { opacity: 1, y: 0, duration: 1.1, ease: 'power3.out',
+      scrollTrigger: { trigger: el, start: 'top 90%' } });
+  });
+  var cd = document.getElementById('countdown');
+  var target = new Date(cd.dataset.date).getTime();
+  function pad(n) { return n < 10 ? '0' + n : String(n); }
+  function tick() {
+    var diff = Math.max(0, target - Date.now());
+    cd.querySelector('[data-cd="d"]').textContent = String(Math.floor(diff / 86400000));
+    cd.querySelector('[data-cd="h"]').textContent = pad(Math.floor(diff / 3600000) % 24);
+    cd.querySelector('[data-cd="m"]').textContent = pad(Math.floor(diff / 60000) % 60);
+    cd.querySelector('[data-cd="s"]').textContent = pad(Math.floor(diff / 1000) % 60);
+  }
+  tick(); setInterval(tick, 1000);
+
+  var nodes = document.querySelectorAll('[data-i18n]');
+  var kk = {};
+  nodes.forEach(function (n) { if (!(n.dataset.i18n in kk)) kk[n.dataset.i18n] = n.textContent; });
+  var D = window.T_I18N; D.kk = kk;
+  function setLang(l) {
+    if (!D[l]) l = 'kk';
+    nodes.forEach(function (n) {
+      var v = D[l][n.dataset.i18n];
+      if (v != null) n.textContent = v;
+    });
+    document.querySelectorAll('.lang button').forEach(function (b) {
+      b.classList.toggle('on', b.dataset.lang === l);
+    });
+    document.documentElement.lang = l;
+  }
+  document.querySelectorAll('.lang button').forEach(function (b) {
+    b.addEventListener('click', function () { setLang(b.dataset.lang); });
+  });
+  ScrollTrigger.refresh();
+})();
+</script>
+</body>
+</html>

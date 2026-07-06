@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Onest:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=fonts1">
+<link rel="stylesheet" href="styles.css?v=tpl1">
 </head>
 <body>
 
@@ -38,6 +38,7 @@
   <a href="#top" class="nav-logo">shaqyru<sup style="font-size:10px; font-style:normal">®</sup></a>
   <nav class="nav-links">
     <a class="roll" data-i18n="nav_folio" href="#portfolio">Портфолио</a>
+    <a class="roll" data-i18n="nav_tpl" href="#templates">Шаблоны</a>
     <a class="roll" data-i18n="nav_process" href="#process">Процесс</a>
     <a class="roll" data-i18n="nav_about" href="#about">О студии</a>
     <a class="roll" data-i18n="nav_contact" href="#contact">Контакт</a>
@@ -57,6 +58,7 @@
 <div id="mmenu" aria-hidden="true">
   <nav class="mmenu-links">
     <a data-i18n="nav_folio" href="#portfolio">Портфолио</a>
+    <a data-i18n="nav_tpl" href="#templates">Шаблоны</a>
     <a data-i18n="nav_process" href="#process">Процесс</a>
     <a data-i18n="nav_about" href="#about">О студии</a>
     <a data-i18n="nav_contact" href="#contact">Контакт</a>
@@ -124,6 +126,45 @@
       <div class="wc-meta">
         <span class="wc-name">Dauren &amp; Aliya</span>
         <span class="label" data-i18n="folio_tag">приглашение · 2026</span>
+        <span class="wc-arrow">→</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- шаблоны -->
+<section id="templates" style="background:var(--cream-2)">
+  <div class="sec-head">
+    <span class="label" data-i18n="tpl_label">Шаблоны</span>
+    <h2 class="sec-title" data-i18n="tpl_title">Готовые дизайны под вашу дату</h2>
+    <p class="rv" style="margin:26px 0 0; max-width:520px; color:var(--ink-soft)" data-i18n="tpl_note">Выберите шаблон — мы заменим имена, даты, цвета и тексты под вашу семью. Запуск за 3 дня.</p>
+  </div>
+  <div class="work-grid">
+    <a class="work-card rv" href="templates/kyz-uzatu/" target="_blank" rel="noopener">
+      <div class="wc-browser">
+        <div class="wc-bar" aria-hidden="true">
+          <span class="wc-dot"></span><span class="wc-dot"></span><span class="wc-dot"></span>
+          <span class="wc-url">shaqyru · templates</span>
+        </div>
+        <div class="wc-shot"><img src="uploads/tpl-kyz.webp" alt="Шаблон приглашения на қыз ұзату" loading="lazy"></div>
+      </div>
+      <div class="wc-meta">
+        <span class="wc-name">Қыз ұзату</span>
+        <span class="label" data-i18n="tpl_tag">шаблон · 3 дня</span>
+        <span class="wc-arrow">→</span>
+      </div>
+    </a>
+    <a class="work-card rv" data-d="120" href="templates/merey-toi/" target="_blank" rel="noopener">
+      <div class="wc-browser">
+        <div class="wc-bar" aria-hidden="true">
+          <span class="wc-dot"></span><span class="wc-dot"></span><span class="wc-dot"></span>
+          <span class="wc-url">shaqyru · templates</span>
+        </div>
+        <div class="wc-shot"><img src="uploads/tpl-merey.webp" alt="Шаблон приглашения на мерейтой" loading="lazy"></div>
+      </div>
+      <div class="wc-meta">
+        <span class="wc-name">Мерей той</span>
+        <span class="label" data-i18n="tpl_tag">шаблон · 3 дня</span>
         <span class="wc-arrow">→</span>
       </div>
     </a>
@@ -231,6 +272,7 @@
     </div>
     <div class="foot-links">
       <a class="roll" data-i18n="nav_folio" href="#portfolio">Портфолио</a>
+    <a class="roll" data-i18n="nav_tpl" href="#templates">Шаблоны</a>
         <a class="roll" data-i18n="nav_contact" href="#contact">Контакт</a>
       <a class="roll" href="#top">Instagram</a>
     </div>
@@ -244,12 +286,13 @@
 <script>
 window.SHQ_I18N = {
   kk: {
-    nav_folio: 'Портфолио', nav_price: 'Тарифтер', nav_process: 'Кезеңдер', nav_about: 'Студия туралы', nav_contact: 'Байланыс', nav_cta: 'Күнді тексеру',
+    nav_folio: 'Портфолио', nav_tpl: 'Үлгілер', nav_price: 'Тарифтер', nav_process: 'Кезеңдер', nav_about: 'Студия туралы', nav_contact: 'Байланыс', nav_cta: 'Күнді тексеру',
     hero_kicker: 'Үйлену тойы сайттарының студиясы · Алматы',
     hero_l1: 'Үйлену тойына арналған,', hero_l2: 'ұмытылмайтын сайттар',
     hero_sub: 'Тойыңыздың жеке сайты — жұптың тарихы, RSVP және қонақтарға қажет барлық ақпарат бір әдемі сілтемеде.',
     hero_cta: 'Күнді тексеру',
     see_project: 'Сайтты көру', folio_tag: 'шақыру · 2026',
+    tpl_label: 'Үлгілер', tpl_title: 'Күніңізге дайын дизайндар', tpl_note: 'Үлгіні таңдаңыз — есімдерді, күндерді, түстер мен мәтіндерді отбасыңызға бейімдейміз. 3 күнде іске қосамыз.', tpl_tag: 'үлгі · 3 күн',
     folio_label: 'Портфолио', folio_title: 'Әр жұптың өз тарихы бар',
     price_label: 'Тарифтер', price_title: 'Тойыңызға лайық формат',
     t1_desc: 'Коллекциядағы дайын дизайн — жылдам әрі талғаммен',
@@ -274,12 +317,13 @@ window.SHQ_I18N = {
     footer_tag: 'шақыру сайттарының студиясы · Алматы'
   },
   en: {
-    nav_folio: 'Portfolio', nav_price: 'Pricing', nav_process: 'Process', nav_about: 'About', nav_contact: 'Contact', nav_cta: 'Check the date',
+    nav_folio: 'Portfolio', nav_tpl: 'Templates', nav_price: 'Pricing', nav_process: 'Process', nav_about: 'About', nav_contact: 'Contact', nav_cta: 'Check the date',
     hero_kicker: 'Wedding website studio · Almaty',
     hero_l1: 'Wedding websites', hero_l2: 'they never forget',
     hero_sub: 'A personal website for your wedding — your story, RSVP and every guest detail in one beautiful link.',
     hero_cta: 'Check the date',
     see_project: 'Visit the site', folio_tag: 'invitation · 2026',
+    tpl_label: 'Templates', tpl_title: 'Ready-made designs for your date', tpl_note: 'Pick a template — we adapt names, dates, colors and copy to your family. Live in 3 days.', tpl_tag: 'template · 3 days',
     folio_label: 'Portfolio', folio_title: 'Every couple, their own story',
     price_label: 'Pricing', price_title: 'A format for your wedding',
     t1_desc: 'A design from our collection — fast and tasteful',
@@ -308,6 +352,6 @@ window.SHQ_I18N = {
 <script src="assets/gsap.min.js"></script>
 <script src="assets/ScrollTrigger.min.js"></script>
 <script src="assets/lenis.min.js"></script>
-<script src="main.js?v=fonts1"></script>
+<script src="main.js?v=tpl1"></script>
 </body>
 </html>
